@@ -91,7 +91,7 @@ public class Timer : MonoBehaviour
             name = ObjectType.MonsterType.Goblin,
             spawnTime = 1,
             spawnDistance = 5,
-            spawnCount = 1
+            spawnCount = 3
         };
 
         StartMonsterWave(new ObjectType.Monster[] { goblin });
@@ -141,7 +141,7 @@ public class Timer : MonoBehaviour
     IEnumerator SpawnMonster(ObjectType.Monster monster)
     {
         //풀매니저 호출
-        GameScenes.poolManager.SpawnMonster(monster.name, monster.spawnDistance, player.transform.position);
+        GameScenes.poolManager.SpawnMonster(monster.name, monster.spawnDistance, player.transform.position, monster.spawnCount, monster.spawnTime);
         yield return null;
     }
 
