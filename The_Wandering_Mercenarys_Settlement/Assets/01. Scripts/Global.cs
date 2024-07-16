@@ -10,4 +10,5 @@ public class Global
 public class GameScenes
 {
     public static GameManager globalGameManager;
+    public static PoolManager poolManager;
 }
