@@ -35,9 +35,6 @@ public class Timer : MonoBehaviour
     [Header("낮밤 시간 길이(초단위로 계산)")]
      public float dayLength; // 낮의 길이 초단위로 계산
      public float nightLength; // 밤의 길이 초단위로 계산
-
-    [Header("세팅값")]
-    [SerializeField] private float monsterSpawnDistance;
     
      private float timer;
      private bool isNight;
@@ -143,22 +140,9 @@ public class Timer : MonoBehaviour
 
     IEnumerator SpawnMonster(ObjectType.Monster monster)
     {
-        GameObject monsterObj = null;
-        FindMonsterObj(monster.name, ref monsterObj);
         //풀매니저 호출
-        GameScenes.poolManager.SpawnMonster(monster.name, monsterSpawnDistance, player.transform.position);
+        GameScenes.poolManager.SpawnMonster(monster.name, monster.spawnDistance, player.transform.position);
         yield return null;
-    }
-
-    private void FindMonsterObj(ObjectType.MonsterType curMonsterType, ref GameObject monsterObj)
-    {
-        foreach(var item in monsters)
-        {
-            if(item.type == curMonsterType)
-            {
-                monsterObj = item.prefab;
-            }
-        }
     }
 
     void SpawnMerchant()
@@ -170,7 +154,4 @@ public class Timer : MonoBehaviour
      {
         merchant.SetActive(false);
      }
-
-
-
 }

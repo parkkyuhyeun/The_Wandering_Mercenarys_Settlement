@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isAroundMerchant()
     {
-        if (merchantRange.Distance(playerCollider).distance < merchantAndPlayerDistance) return true; else return false;
+        if (merchantRange.Distance(playerCollider).distance < merchantAndPlayerDistance) return true; 
+        else return false;
     }
 }

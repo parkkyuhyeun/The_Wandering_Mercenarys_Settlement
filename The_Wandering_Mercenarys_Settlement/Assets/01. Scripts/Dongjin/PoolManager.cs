@@ -16,6 +16,11 @@ public class PoolManager : MonoBehaviour
     private Dictionary<ObjectType.MonsterType, Queue<GameObject>> poolDictionary;
     [SerializeField] private Transform monsterParentTransform;
 
+    private void Awake()
+    {
+        GameScenes.poolManager = this;
+    }
+
     void Start()
     {
         InitializePools();

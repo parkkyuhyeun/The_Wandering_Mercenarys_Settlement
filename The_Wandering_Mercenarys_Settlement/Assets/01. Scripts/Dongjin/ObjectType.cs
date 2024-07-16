@@ -22,6 +22,10 @@ public class ObjectType : MonoBehaviour
         public int spawnDistance; //스폰될 때 플레이어와의 거리
         public int spawnCount; //스폰되는 수량
 
+        public Monster()
+        {
+        }
+
         public Monster(MonsterType name, int spawnTime, int spawnDistance, int spawnCount)
         {
             this.name = name;
