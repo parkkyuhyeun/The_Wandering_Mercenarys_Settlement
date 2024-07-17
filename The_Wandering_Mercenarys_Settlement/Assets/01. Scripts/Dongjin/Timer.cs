@@ -11,14 +11,16 @@ public class MonsterEntry
     public GameObject prefab; // 몬스터 프리팹
     public int spawnTime; // 몬스터 스폰 시간
     public int spawnDistance; // 몬스터 스폰 거리
+    public int spawnCount; //몬스터 수
 
     // 생성자는 필요에 따라 추가할 수 있습니다.
-    public MonsterEntry(ObjectType.MonsterType type, GameObject prefab, int spawnTime, int spawnDistance)
+    public MonsterEntry(ObjectType.MonsterType type, GameObject prefab, int spawnTime, int spawnDistance, int spawnCount)
     {
         this.type = type;
         this.prefab = prefab;
         this.spawnTime = spawnTime;
         this.spawnDistance = spawnDistance;
+        this.spawnCount = spawnCount;
     }
 }
 
@@ -26,7 +28,6 @@ public class Timer : MonoBehaviour
 {
     [Header("오브젝트")]
     [SerializeField] GameObject merchant;
-    [SerializeField] GameObject monsterParent;
 
     [Header("몬스터 값 설정")]
     [SerializeField] List<MonsterEntry> monsters;
@@ -37,11 +38,14 @@ public class Timer : MonoBehaviour
     
      private float timer;
      private bool isNight;
+    private bool isMerchantAround = false;
     private GameObject player;
+    private PlayerController playerController;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
     }
 
     void Start()
@@ -51,7 +55,7 @@ public class Timer : MonoBehaviour
 
      void Update()
      {
-         timer += Time.deltaTime * 60f;
+         timer += Time.deltaTime;
          if (isNight && timer > nightLength)
          {
              StartDay();
@@ -60,6 +64,14 @@ public class Timer : MonoBehaviour
          {
              StartNight();
          }
+         if(!isNight && playerController.isAroundMerchant() && !isMerchantAround)
+         {
+            //여기에 상점 관련 코드 추가
+            Debug.Log("상인과 접촉했음");
+            isMerchantAround = true;
+         }
+        if (!playerController.isAroundMerchant() && isMerchantAround)
+            isMerchantAround = false;
      }
 
      void StartDay()
@@ -74,21 +86,25 @@ public class Timer : MonoBehaviour
          isNight = true;
          timer = 0;
          RemoveMerchant(); // 상인 제거
-     }
-
-    public IEnumerator StartMonsterWave(int monsterCnt, ObjectType.Monster monster1, ObjectType.Monster monster2, ObjectType.Monster monster3)
-    {
-        for (int i = 0; i < monsterCnt; i++)
+        ObjectType.Monster goblin = new ObjectType.Monster
         {
-            SetMonsterValues(ref monster1);
-            SetMonsterValues(ref monster2);
-            SetMonsterValues(ref monster3);
-            //몬스터 생성 로직
-            StartCoroutine(SpawnMonster(monster1));
-            StartCoroutine(SpawnMonster(monster2));
-            StartCoroutine(SpawnMonster(monster3));
-        }
-        yield return null;
+            name = ObjectType.MonsterType.Goblin,
+            spawnTime = 1,
+            spawnDistance = 5,
+            spawnCount = 1
+        };
+
+        StartMonsterWave(new ObjectType.Monster[] { goblin });
+    }
+
+    public void StartMonsterWave(ObjectType.Monster[] monsterTypes)
+    {
+       for(int i = 0; i < monsterTypes.Length; i++)
+            SetMonsterValues(ref monsterTypes[i]);
+        
+       for(int i = 0; i < monsterTypes.Length; i++)
+            StartCoroutine(SpawnMonster(monsterTypes[i]));
+        
     }
 
     // 몬스터의 값 세팅
@@ -111,26 +127,22 @@ public class Timer : MonoBehaviour
                 break;
             }
         }
+
+        foreach (var item in monsters)
+        {
+            if (item.type == monster.name)
+            {
+                monster.spawnCount = item.spawnCount;
+                break;
+            }
+        }
     }
 
     IEnumerator SpawnMonster(ObjectType.Monster monster)
     {
-        GameObject monsterObj = null;
-        Transform monsterTrm = null;
-        FindMonsterObj(monster.name, ref monsterObj);
-        Instantiate(monsterObj, monsterTrm.position, Quaternion.identity, monsterParent.transform);
+        //풀매니저 호출
+        GameScenes.poolManager.SpawnMonster(monster.name, monster.spawnDistance, player.transform.position);
         yield return null;
-    }
-
-    private void FindMonsterObj(ObjectType.MonsterType curMonsterType, ref GameObject monsterObj)
-    {
-        foreach(var item in monsters)
-        {
-            if(item.type == curMonsterType)
-            {
-                monsterObj = item.prefab;
-            }
-        }
     }
 
     void SpawnMerchant()
@@ -142,7 +154,4 @@ public class Timer : MonoBehaviour
      {
         merchant.SetActive(false);
      }
-
-
-
 }
