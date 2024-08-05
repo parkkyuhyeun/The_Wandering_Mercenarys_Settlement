@@ -39,10 +39,10 @@ public class Timer : MonoBehaviour
     [Header("낮밤 시간 길이(초단위로 계산)")]
      public float dayLength; // 낮의 길이 초단위로 계산
      public float nightLength; // 밤의 길이 초단위로 계산
-    
+
+    private int waveCount = 0;
      private float timer;
      private bool isNight;
-    private bool isMerchantAround = false;
     private GameObject player;
     private PlayerController playerController;
 
@@ -68,18 +68,29 @@ public class Timer : MonoBehaviour
          {
              StartNight();
          }
-         if(!isNight && playerController.isAroundMerchant() && !isMerchantAround)
+         if(!isNight && playerController.isAroundMerchant())
          {
+
             clickUI.SetActive(true);
             Debug.Log("상인과 접촉했음");
-            isMerchantAround = true;
+            
             if (Input.GetKeyDown(KeyCode.F))
             {
                 shopUI.SetActive(true);
+                Debug.Log("상점 오픈");
             }
          }
-        if (!playerController.isAroundMerchant() && isMerchantAround)
-            isMerchantAround = false;
+        if (!playerController.isAroundMerchant())
+        {
+            
+            clickUI.SetActive(false);
+            Debug.Log("상인과 헤어짐");
+            if (shopUI.activeSelf)
+            {
+                shopUI.SetActive(false);
+                Debug.Log("상점 닫음");
+            }
+        }
      }
 
      void StartDay()
@@ -94,9 +105,11 @@ public class Timer : MonoBehaviour
          isNight = true;
          timer = 0;
          RemoveMerchant(); // 상인 제거
-        
+        shopUI.SetActive(false);
+        clickUI.SetActive(false);
 
-        //StartMonsterWave();
+        StartMonsterWave(GameScenes.globalWaveManager.MonstersInWaves(waveCount));
+        waveCount++;
     }
 
     public void StartMonsterWave(ObjectType.Monster[] monsterTypes)
