@@ -59,6 +59,10 @@ public class Timer : MonoBehaviour
 
      void Update()
      {
+        if (!GameScenes.globalGameManager.isGameStart)
+        {
+            return;
+        }
          timer += Time.deltaTime;
          if (isNight && timer > nightLength)
          {
