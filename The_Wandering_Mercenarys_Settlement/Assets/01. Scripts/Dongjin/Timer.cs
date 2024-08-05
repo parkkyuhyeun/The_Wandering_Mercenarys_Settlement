@@ -37,12 +37,12 @@ public class Timer : MonoBehaviour
     [SerializeField] List<MonsterEntry> monsters;
 
     [Header("낮밤 시간 길이(초단위로 계산)")]
-     public float dayLength; // 낮의 길이 초단위로 계산
-     public float nightLength; // 밤의 길이 초단위로 계산
-    
-     private float timer;
-     private bool isNight;
-    private bool isMerchantAround = false;
+    public float dayLength; // 낮의 길이 초단위로 계산
+    public float nightLength; // 밤의 길이 초단위로 계산
+
+    public bool isNight;
+
+    private float timer;
     private GameObject player;
     private PlayerController playerController;
 
@@ -53,60 +53,65 @@ public class Timer : MonoBehaviour
     }
 
     void Start()
-     {
-         StartDay();
-     }
+    {
+        StartDay();
+    }
 
-     void Update()
-     {
-         timer += Time.deltaTime;
-         if (isNight && timer > nightLength)
-         {
-             StartDay();
-         }
-         else if (!isNight && timer > dayLength)
-         {
-             StartNight();
-         }
-         if(!isNight && playerController.isAroundMerchant() && !isMerchantAround)
-         {
+    void Update()
+    {
+        timer += Time.deltaTime;
+        if (isNight && timer > nightLength)
+        {
+            StartDay();
+        }
+        else if (!isNight && timer > dayLength)
+        {
+            StartNight();
+        }
+        if (!isNight && playerController.isAroundMerchant())
+        {
             clickUI.SetActive(true);
             Debug.Log("상인과 접촉했음");
-            isMerchantAround = true;
             if (Input.GetKeyDown(KeyCode.F))
             {
+                print("F");
                 shopUI.SetActive(true);
+                clickUI.SetActive(false);
             }
-         }
-        if (!playerController.isAroundMerchant() && isMerchantAround)
-            isMerchantAround = false;
-     }
+        }
+        if (!playerController.isAroundMerchant())
+        {
+            clickUI.SetActive(false);
+        }
+    }
 
-     void StartDay()
-     {
-         isNight = false;
-         timer = 0;
-         SpawnMerchant(); // 낮에 상인 소환
-     }
+    void StartDay()
+    {
+        isNight = false;
+        timer = 0;
+        SpawnMerchant(); // 낮에 상인 소환
+    }
 
-     void StartNight()
-     {
-         isNight = true;
-         timer = 0;
-         RemoveMerchant(); // 상인 제거
-        
+    void StartNight()
+    {
+        isNight = true;
+        timer = 0;
+        RemoveMerchant(); // 상인 제거
+        shopUI.SetActive(false);
+        clickUI.SetActive(false);
+
 
         //StartMonsterWave();
     }
 
     public void StartMonsterWave(ObjectType.Monster[] monsterTypes)
     {
-       for(int i = 0; i < monsterTypes.Length; i++)
+        for (int i = 0; i < monsterTypes.Length; i++)
             SetMonsterValues(ref monsterTypes[i]);
-        
-       for(int i = 0; i < monsterTypes.Length; i++)
+
+        for (int i = 0; i < monsterTypes.Length; i++)
             StartCoroutine(SpawnMonster(monsterTypes[i]));
-        
+
     }
 
     // 몬스터의 값 세팅
@@ -148,12 +153,12 @@ public class Timer : MonoBehaviour
     }
 
     void SpawnMerchant()
-     {
-         merchant.SetActive(true);
-     }
+    {
+        merchant.SetActive(true);
+    }
 
-     void RemoveMerchant()
-     {
+    void RemoveMerchant()
+    {
         merchant.SetActive(false);
-     }
+    }
 }
