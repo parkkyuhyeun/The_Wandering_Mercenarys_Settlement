@@ -20,7 +20,7 @@ public class PoolManager : MonoBehaviour
 
     private void Awake()
     {
-        GameScenes.poolManager = this;
+        GameScenes.globalPoolManager = this;
     }
 
     void Start()
