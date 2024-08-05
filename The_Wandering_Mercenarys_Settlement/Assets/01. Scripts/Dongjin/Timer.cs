@@ -26,6 +26,10 @@ public class MonsterEntry
 
 public class Timer : MonoBehaviour
 {
+    [Header("UI")]
+    [SerializeField] GameObject shopUI;
+    [SerializeField] GameObject clickUI;
+
     [Header("오브젝트")]
     [SerializeField] GameObject merchant;
 
@@ -66,9 +70,13 @@ public class Timer : MonoBehaviour
          }
          if(!isNight && playerController.isAroundMerchant() && !isMerchantAround)
          {
-            //여기에 상점 관련 코드 추가
+            clickUI.SetActive(true);
             Debug.Log("상인과 접촉했음");
             isMerchantAround = true;
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                shopUI.SetActive(true);
+            }
          }
         if (!playerController.isAroundMerchant() && isMerchantAround)
             isMerchantAround = false;
