@@ -13,12 +13,14 @@ public class PoolManager : MonoBehaviour
     }
 
     [SerializeField] private List<MonsterPool> monsterPools;
-    private Dictionary<ObjectType.MonsterType, Queue<GameObject>> poolDictionary;
     [SerializeField] private Transform monsterParentTransform;
+    private Dictionary<ObjectType.MonsterType, Queue<GameObject>> poolDictionary;
+    private GameObject[] monsterToSpawn;
+
 
     private void Awake()
     {
-        GameScenes.poolManager = this;
+        GameScenes.globalPoolManager = this;
     }
 
     void Start()
@@ -45,19 +47,21 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    public GameObject SpawnMonster(ObjectType.MonsterType type, float distance, Vector3 playerPosition)
+    public GameObject[] SpawnMonster(ObjectType.MonsterType type, float distance, Vector3 playerPosition, int spawnCount, float SpawnTime)
     {
         if (!poolDictionary.ContainsKey(type))
         {
             Debug.LogError("No pool with such type!");
             return null;
         }
+        for(int i = 0; i < spawnCount; ++i)
+        {
+            monsterToSpawn[i] = poolDictionary[type].Count > 0 ? poolDictionary[type].Dequeue() : Instantiate(GetPrefabByType(type));
+            monsterToSpawn[i].SetActive(true);
 
-        GameObject monsterToSpawn = poolDictionary[type].Count > 0 ? poolDictionary[type].Dequeue() : Instantiate(GetPrefabByType(type));
-        monsterToSpawn.SetActive(true);
-
-        Vector3 spawnPosition = RandomPosition(playerPosition, distance);
-        monsterToSpawn.transform.position = spawnPosition;
+            Vector3 spawnPosition = RandomPosition(playerPosition, distance);
+            monsterToSpawn[i].transform.position = spawnPosition;
+        }
 
         return monsterToSpawn;
     }
