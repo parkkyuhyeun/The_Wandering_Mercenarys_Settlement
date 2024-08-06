@@ -21,11 +21,31 @@ public class PlayerController : MonoBehaviour
         playerCollider = GetComponent<Collider2D>();
     }
 
+    private void Update()
+    {
+        //if (GameScenes.globalGameManager.isOpenSetting || GameScenes.globalGameManager.isGameOver || GameScenes.globalGameManager.isOpenShop || !GameScenes.globalGameManager.isGameStart)
+        //{
+        //    return;
+        //}
+
+    }
+
     private void FixedUpdate()
     {
         var xInput = Input.GetAxisRaw("Horizontal");
         var yInput = Input.GetAxisRaw("Vertical");
         rigid.MovePosition(rigid.position + (new Vector2(xInput, yInput) * (moveSpeed * speedMultiplier)) * Time.deltaTime);
+        var playerScale = rigid.gameObject.transform.localScale;
+        if (xInput < 0)
+        {
+            playerScale = new Vector3(-1, playerScale.y, playerScale.z);
+        }
+        else if(xInput > 0)
+        {
+            playerScale = new Vector3(1, playerScale.y, playerScale.z);
+        }
+
+        rigid.gameObject.transform.localScale = playerScale; 
     }
 
     public bool isAroundMerchant()

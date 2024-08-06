@@ -47,8 +47,9 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    public GameObject[] SpawnMonster(ObjectType.MonsterType type, float distance, Vector3 playerPosition, int spawnCount, float SpawnTime)
+    public GameObject[] SpawnMonster(ObjectType.MonsterType type, float distance, Vector3 playerPosition, int spawnCount)
     {
+        monsterToSpawn = new GameObject[spawnCount];
         if (!poolDictionary.ContainsKey(type))
         {
             Debug.LogError("No pool with such type!");
