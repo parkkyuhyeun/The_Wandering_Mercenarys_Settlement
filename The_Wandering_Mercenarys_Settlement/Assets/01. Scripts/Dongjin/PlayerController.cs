@@ -23,10 +23,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (GameScenes.globalGameManager.isOpenSetting || GameScenes.globalGameManager.isGameOver || GameScenes.globalGameManager.isOpenShop || !GameScenes.globalGameManager.isGameStart)
-        {
-            return;
-        }
+        //if (GameScenes.globalGameManager.isOpenSetting || GameScenes.globalGameManager.isGameOver || GameScenes.globalGameManager.isOpenShop || !GameScenes.globalGameManager.isGameStart)
+        //{
+        //    return;
+        //}
 
     }
 

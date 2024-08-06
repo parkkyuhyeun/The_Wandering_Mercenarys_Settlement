@@ -34,7 +34,7 @@ public class Timer : MonoBehaviour
     [SerializeField] GameObject merchant;
 
     [Header("몬스터 값 설정")]
-    [SerializeField] List<MonsterEntry> monsters;
+    [SerializeField] public List<MonsterEntry> monsters;
 
     [Header("낮밤 시간 길이(초단위로 계산)")]
      public float dayLength; // 낮의 길이 초단위로 계산
@@ -48,8 +48,10 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
+        GameScenes.globalTimer = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
+        waveCount = 0;
     }
 
     void Start()
@@ -59,10 +61,10 @@ public class Timer : MonoBehaviour
 
      void Update()
      {
-        if (!GameScenes.globalGameManager.isGameStart)
-        {
-            return;
-        }
+        //if (!GameScenes.globalGameManager.isGameStart)
+        //{
+        //    return;
+        //}
          timer += Time.deltaTime;
          if (isNight && timer > nightLength)
          {
@@ -118,50 +120,15 @@ public class Timer : MonoBehaviour
 
     public void StartMonsterWave(ObjectType.Monster[] monsterTypes)
     {
-       for(int i = 0; i < monsterTypes.Length; i++)
-            SetMonsterValues(ref monsterTypes[i]);
-        
-       for(int i = 0; i < monsterTypes.Length; i++)
+       for(int i = 0; i < monsterTypes.Length; ++i)
             StartCoroutine(SpawnMonster(monsterTypes[i]));
-        
-    }
-
-    // 몬스터의 값 세팅
-    private void SetMonsterValues(ref ObjectType.Monster monster)
-    {
-        foreach (var item in monsters)
-        {
-            if (item.type == monster.name)
-            {
-                monster.spawnTime = item.spawnTime;
-                break;
-            }
-        }
-
-        foreach (var item in monsters)
-        {
-            if (item.type == monster.name)
-            {
-                monster.spawnDistance = item.spawnDistance;
-                break;
-            }
-        }
-
-        foreach (var item in monsters)
-        {
-            if (item.type == monster.name)
-            {
-                monster.spawnCount = item.spawnCount;
-                break;
-            }
-        }
     }
 
     IEnumerator SpawnMonster(ObjectType.Monster monster)
     {
         //풀매니저 호출
-        GameScenes.globalPoolManager.SpawnMonster(monster.name, monster.spawnDistance, player.transform.position, monster.spawnCount, monster.spawnTime);
-        yield return null;
+        GameScenes.globalPoolManager.SpawnMonster(monster.name, monster.spawnDistance, player.transform.position, monster.spawnCount);
+        yield return new WaitForSeconds(monster.spawnTime);
     }
 
     void SpawnMerchant()

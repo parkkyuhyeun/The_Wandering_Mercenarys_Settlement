@@ -32,18 +32,33 @@ public class WaveManager : MonoBehaviour
         {
             if(wave.waveNumber == waveCnt)
             {
-                for(int i = 0; i < wave.monsters.Length; i++)
+                monsters = new ObjectType.Monster[wave.monsters.Length];
+                for (int i = 0; i < wave.monsters.Length; i++)
                 {
                     monsters[i] = GetMonster(wave.monsters[i]);
                 }
             }
         }
-        return null;
+        if (monsters == null) Debug.Log("왜 몬스터가 널이냐??");
+        return monsters;
     }
 
     private ObjectType.Monster GetMonster(ObjectType.MonsterType monsterType)
     {
-        ObjectType.Monster monster = new ObjectType.Monster(monsterType, 0,0,0);
+        if (GameScenes.globalTimer == null || GameScenes.globalTimer.monsters == null)
+        {
+            Debug.LogError("globalTimer or monsters is null!");
+            return null;
+        }
+        MonsterEntry curMonster = null;
+        foreach(var monsterEntry in GameScenes.globalTimer.monsters)
+        {
+            if(monsterEntry.type == monsterType)
+            {
+                curMonster = monsterEntry;
+            }
+        }
+        var monster = new ObjectType.Monster(curMonster.type, curMonster.spawnTime, curMonster.spawnDistance, curMonster.spawnCount);
         return monster;
     }
 }
