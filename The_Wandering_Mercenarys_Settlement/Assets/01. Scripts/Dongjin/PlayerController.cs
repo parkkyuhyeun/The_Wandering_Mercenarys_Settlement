@@ -12,13 +12,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Collider2D merchantRange;
     [SerializeField] private float merchantAndPlayerDistance;
 
+    [Header("무기")]
+    [SerializeField] private GameObject weapon;
+
     private Rigidbody2D rigid;
     private Collider2D playerCollider;
+    private Collider2D weaponCollider;
+    private bool isAttack = false;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
+        weaponCollider = weapon.GetComponent<Collider2D>();
     }
 
     private void Update()
@@ -28,6 +34,10 @@ public class PlayerController : MonoBehaviour
         //    return;
         //}
 
+        if(Input.GetMouseButton(0))
+        {
+            AttackStart();
+        }
     }
 
     private void FixedUpdate()
@@ -52,5 +62,17 @@ public class PlayerController : MonoBehaviour
     {
         if (merchantRange.Distance(playerCollider).distance < merchantAndPlayerDistance) return true; 
         else return false;
+    }
+
+    private void AttackStart()
+    {
+        //애니메이션
+
+        //닿았으면 데미지 주기
+        if (GameScenes.globalWeapon.isContact)
+        {
+
+        }
+        
     }
 }
