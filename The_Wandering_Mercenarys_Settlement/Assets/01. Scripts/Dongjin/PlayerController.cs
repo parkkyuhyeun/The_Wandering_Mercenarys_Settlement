@@ -67,11 +67,11 @@ public class PlayerController : MonoBehaviour
     private void AttackStart()
     {
         //애니메이션
-
+        
         //닿았으면 데미지 주기
         if (GameScenes.globalWeapon.isContact)
         {
-
+            Debug.Log("데미지 빵야");
         }
         
     }
