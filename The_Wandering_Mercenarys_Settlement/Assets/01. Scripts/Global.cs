@@ -13,4 +13,6 @@ public class GameScenes
     public static PoolManager globalPoolManager;
     public static WaveManager globalWaveManager;
     public static Timer globalTimer;
+    public static EnemyController globalEnemyController;
+    public static Weapon globalWeapon;
 }

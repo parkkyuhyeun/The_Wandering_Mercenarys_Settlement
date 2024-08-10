@@ -7,7 +7,7 @@ public class ObjectType : MonoBehaviour
 {
     public enum MonsterType
     {
-        empty, Goblin, 
+        empty, Goblin, Slime, Skeleton, GoblinKing, SlimeKing, SkeletonKing, RedDragon, 
     }
 
     public enum ObstacleType

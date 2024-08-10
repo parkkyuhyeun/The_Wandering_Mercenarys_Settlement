@@ -12,7 +12,7 @@ public class PoolManager : MonoBehaviour
         public int initialSize;
     }
 
-    [SerializeField] private List<MonsterPool> monsterPools;
+    [SerializeField] public List<MonsterPool> monsterPools;
     [SerializeField] private Transform monsterParentTransform;
     private Dictionary<ObjectType.MonsterType, Queue<GameObject>> poolDictionary;
     private GameObject[] monsterToSpawn;
@@ -21,11 +21,12 @@ public class PoolManager : MonoBehaviour
     private void Awake()
     {
         GameScenes.globalPoolManager = this;
+        InitializePools();
     }
 
     void Start()
     {
-        InitializePools();
+        
     }
 
     private void InitializePools()
