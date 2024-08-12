@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,16 +16,25 @@ public class PlayerController : MonoBehaviour
     [Header("公扁")]
     [SerializeField] private GameObject weapon;
 
+    [Header("胶湃")]
+    [SerializeField] private PlayerSO playerSO;
+    [SerializeField] private float damageCooltime;
+
     private Rigidbody2D rigid;
     private Collider2D playerCollider;
-    private Collider2D weaponCollider;
-    private bool isAttack = false;
+    private bool isFinishCoolDown = true;
+    private Animator anim;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
-        weaponCollider = weapon.GetComponent<Collider2D>();
+        anim = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        weapon = GameObject.FindGameObjectWithTag("Weapon");
     }
 
     private void Update()
@@ -33,11 +43,23 @@ public class PlayerController : MonoBehaviour
         //{
         //    return;
         //}
-
-        if(Input.GetMouseButton(0))
+        if (isFinishCoolDown)
         {
-            AttackStart();
+            if (Input.GetMouseButtonDown(0))
+            {
+                AttackStart();
+                isFinishCoolDown = false;
+                StartCoroutine(FinishCoolDown());
+            }
         }
+        
+    }
+
+    private IEnumerator FinishCoolDown()
+    {
+        yield return new WaitForSeconds(damageCooltime);
+        isFinishCoolDown=true;
+            
     }
 
     private void FixedUpdate()
@@ -46,6 +68,14 @@ public class PlayerController : MonoBehaviour
         var yInput = Input.GetAxisRaw("Vertical");
         rigid.MovePosition(rigid.position + (new Vector2(xInput, yInput) * (moveSpeed * speedMultiplier)) * Time.deltaTime);
         var playerScale = rigid.gameObject.transform.localScale;
+        if (xInput != 0 || yInput != 0)
+        {
+            anim.SetBool("isWalk", true);
+        }
+        else
+        {
+            anim.SetBool("isWalk", false);
+        }
         if (xInput < 0)
         {
             playerScale = new Vector3(-1, playerScale.y, playerScale.z);
@@ -72,6 +102,7 @@ public class PlayerController : MonoBehaviour
         if (GameScenes.globalWeapon.isContact)
         {
             Debug.Log("单固瘤 户具");
+            GameScenes.globalWeapon.EnemyObj.GetComponent<EnemyController>().TakeDamage(playerSO.Damage);
         }
         
     }

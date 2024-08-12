@@ -7,8 +7,10 @@ public class EnemyController : MonoBehaviour
 {
     public List<GameObject> enemys = new List<GameObject>();
 
-    [SerializeField] private int maxHP;
-    [SerializeField] private int curHP;
+    [Header("╫╨ех")]
+    [SerializeField] private EnemySO enemySO;
+
+    private float curHP;
 
 
     private void Awake()
@@ -18,25 +20,25 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        foreach(var monsterPool in GameScenes.globalPoolManager.monsterPools)
-        {
-            enemys.Add(monsterPool.prefab);
-        }
+        curHP = enemySO.MaxHP;
     }
 
     void Update()
     {
-        //юс╫ц
-        if(Input.GetKey(KeyCode.M))
-            UpdateAllEnemys();
+        
     }
 
-    public void UpdateAllEnemys()
+    private void FindPlayerAndFollow()
     {
-        enemys.Clear();
-        foreach (var monsterPool in GameScenes.globalPoolManager.monsterPools)
+
+    }
+
+    public void TakeDamage(float Damage)
+    {
+        curHP -= Damage;
+        if(curHP < 0)
         {
-            enemys.Add(monsterPool.prefab);
+            GameScenes.globalPoolManager.DespawnMonster(gameObject, enemySO.monsterType);
         }
     }
 }

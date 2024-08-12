@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public bool isContact = false;
+    public GameObject EnemyObj;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class Weapon : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             isContact = true;
+            EnemyObj = collision.gameObject;
         }
     }
 

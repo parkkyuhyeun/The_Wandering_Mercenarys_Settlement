@@ -3279,6 +3279,8 @@ MonoBehaviour:
   merchantRange: {fileID: 501571697}
   merchantAndPlayerDistance: 1
   weapon: {fileID: 862550832}
+  playerSO: {fileID: 11400000, guid: 5cfb29e4cd150b845b1a50e11ef49f17, type: 2}
+  damageCooltime: 2
 --- !u!212 &532204819
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5751,6 +5753,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811292894}
   m_CullTransparentMesh: 1
+--- !u!1 &812735411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812735412}
+  m_Layer: 0
+  m_Name: MerchantSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &812735412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812735411}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8, y: 8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &834261743
 GameObject:
   m_ObjectHideFlags: 0
@@ -5916,7 +5949,7 @@ GameObject:
   - component: {fileID: 862550834}
   m_Layer: 0
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6036,6 +6069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isContact: 0
+  EnemyObj: {fileID: 0}
 --- !u!1 &882046837
 GameObject:
   m_ObjectHideFlags: 0
@@ -7579,6 +7613,7 @@ MonoBehaviour:
     spawnCount: 1
   dayLength: 10
   nightLength: 10
+  merchantSpawnPoint: {fileID: 812735411}
 --- !u!4 &1176284926
 Transform:
   m_ObjectHideFlags: 0
@@ -11398,7 +11433,7 @@ Transform:
   m_GameObject: {fileID: 1923793690}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.49, y: 4.47, z: 0}
+  m_LocalPosition: {x: -8, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12994,3 +13029,4 @@ SceneRoots:
   - {fileID: 1176284926}
   - {fileID: 361494374}
   - {fileID: 757400661}
+  - {fileID: 812735412}

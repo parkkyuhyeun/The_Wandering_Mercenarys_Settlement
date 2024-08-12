@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [System.Serializable] // 인스펙터에서 보이게 하기 위해 필요
 public class MonsterEntry
@@ -40,9 +41,13 @@ public class Timer : MonoBehaviour
      public float dayLength; // 낮의 길이 초단위로 계산
      public float nightLength; // 밤의 길이 초단위로 계산
 
+    [Header("스폰 포인트")]
+    [SerializeField] private GameObject merchantSpawnPoint;
+    [SerializeField] private GameObject merchantMovePoint;
+
     private int waveCount = 0;
      private float timer;
-     private bool isNight;
+     public bool isNight;
     private GameObject player;
     private PlayerController playerController;
 
@@ -133,11 +138,29 @@ public class Timer : MonoBehaviour
 
     void SpawnMerchant()
      {
-         merchant.SetActive(true);
+        merchant.SetActive(true);
+        MoveRight();
      }
 
      void RemoveMerchant()
      {
         merchant.SetActive(false);
-     }
+        GoToSpawnPoint();
+    }
+
+    private void MoveRight()
+    {
+        
+        //걷기 애니메이션 처리
+
+        //움직이기
+        Vector2.MoveTowards(merchant.transform.position, merchantMovePoint.transform.position, float.MaxValue);
+        //아이들 애니메이션 전환
+
+    }
+
+    private void GoToSpawnPoint()
+    {
+        merchant.transform.position = merchantSpawnPoint.transform.position;
+    }
 }
