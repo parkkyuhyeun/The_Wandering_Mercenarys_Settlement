@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Enemy
   - Weapon
+  - Timer
+  - Item
+  - Potion
+  - ItemEquip
+  - PotionEquip
+  - AnotherItem
+  - AnotherPotion
   layers:
   - Default
   - TransparentFX

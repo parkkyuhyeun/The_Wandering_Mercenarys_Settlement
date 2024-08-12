@@ -2584,6 +2584,8 @@ MonoBehaviour:
     spawnCount: 1
   dayLength: 10
   nightLength: 10
+  merchantSpawnPoint: {fileID: 0}
+  merchantMovePoint: {fileID: 0}
   isNight: 0
 --- !u!4 &216396894
 Transform:
@@ -4397,6 +4399,8 @@ MonoBehaviour:
   merchantRange: {fileID: 1505787259}
   merchantAndPlayerDistance: 1
   weapon: {fileID: 1787352062}
+  playerSO: {fileID: 0}
+  damageCooltime: 0
 --- !u!212 &410695756
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14320,6 +14324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isContact: 0
+  EnemyObj: {fileID: 0}
 --- !u!212 &1787352065
 SpriteRenderer:
   m_ObjectHideFlags: 0
