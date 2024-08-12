@@ -7614,6 +7614,8 @@ MonoBehaviour:
   dayLength: 10
   nightLength: 10
   merchantSpawnPoint: {fileID: 812735411}
+  merchantMovePoint: {fileID: 2079801611}
+  isNight: 0
 --- !u!4 &1176284926
 Transform:
   m_ObjectHideFlags: 0
@@ -12343,6 +12345,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2060976960}
   m_CullTransparentMesh: 1
+--- !u!1 &2079801611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2079801612}
+  m_Layer: 0
+  m_Name: MerchantMovePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2079801612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079801611}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6, y: 8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2101926303
 GameObject:
   m_ObjectHideFlags: 0
@@ -13030,3 +13063,4 @@ SceneRoots:
   - {fileID: 361494374}
   - {fileID: 757400661}
   - {fileID: 812735412}
+  - {fileID: 2079801612}
