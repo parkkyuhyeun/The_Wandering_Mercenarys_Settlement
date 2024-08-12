@@ -44,12 +44,14 @@ public class Timer : MonoBehaviour
     [Header("스폰 포인트")]
     [SerializeField] private GameObject merchantSpawnPoint;
     [SerializeField] private GameObject merchantMovePoint;
+    [SerializeField] private GameObject merchantEndPoint;
 
     private int waveCount = 0;
      private float timer;
      public bool isNight;
     private GameObject player;
     private PlayerController playerController;
+    private bool isFirstMove;
 
     private void Awake()
     {
@@ -62,6 +64,7 @@ public class Timer : MonoBehaviour
     void Start()
      {
          StartDay();
+        GoToSpawnPoint();
      }
 
      void Update()
@@ -138,25 +141,44 @@ public class Timer : MonoBehaviour
 
     void SpawnMerchant()
      {
+        isFirstMove = false;
         merchant.SetActive(true);
-        MoveRight();
+        MoveRight(merchantMovePoint.transform.position);
      }
 
      void RemoveMerchant()
      {
+        isFirstMove = true;
         merchant.SetActive(false);
-        GoToSpawnPoint();
+        MoveRight(merchantEndPoint.transform.position);
     }
 
-    private void MoveRight()
+    private void MoveRight(Vector3 targetPosition)
     {
-        
+
         //걷기 애니메이션 처리
 
-        //움직이기
-        Vector2.MoveTowards(merchant.transform.position, merchantMovePoint.transform.position, float.MaxValue);
+        //merchantSpawnPoint에서 merchantMovePoint 까지 일정 시간동안 자연스럽게 이동하기
+        StartCoroutine(MoveToPosition(targetPosition, 1.5f));
         //아이들 애니메이션 전환
 
+        
+    }
+
+    private IEnumerator MoveToPosition(Vector3 targetPosition, float duration)
+    {
+        float time = 0;
+        Vector3 startPosition = merchant.transform.position;
+
+        while (time < duration)
+        {
+            merchant.transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            time += Time.deltaTime;
+            yield return null; // 다음 프레임까지 대기
+        }
+
+        merchant.transform.position = targetPosition;
+        if (isFirstMove) GoToSpawnPoint();
     }
 
     private void GoToSpawnPoint()
