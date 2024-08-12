@@ -712,8 +712,8 @@ GameObject:
   - component: {fileID: 22668881}
   - component: {fileID: 22668880}
   m_Layer: 5
-  m_Name: DragImage (2)
-  m_TagString: Untagged
+  m_Name: Item 3
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -749,6 +749,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86296df45f9d9b440b4fc17a770a6906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 1029509418}
+  DefaultValue: 0
+  CurrentValue: 0
+  itemCode: 0
 --- !u!114 &22668881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -933,7 +937,7 @@ GameObject:
   - component: {fileID: 33980160}
   - component: {fileID: 33980159}
   m_Layer: 5
-  m_Name: Panel_ItemPlace
+  m_Name: ItemBag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1716,8 +1720,8 @@ GameObject:
   - component: {fileID: 115480928}
   - component: {fileID: 115480927}
   m_Layer: 5
-  m_Name: Place_Potion (7)
-  m_TagString: Another
+  m_Name: Slot 8
+  m_TagString: AnotherPotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2115,8 +2119,8 @@ GameObject:
   - component: {fileID: 180353912}
   - component: {fileID: 180353911}
   m_Layer: 5
-  m_Name: Place_Potion (4)
-  m_TagString: Another
+  m_Name: Slot 5
+  m_TagString: AnotherPotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2574,7 +2578,7 @@ MonoBehaviour:
     spawnDistance: 5
     spawnCount: 3
   - type: 0
-    prefab: {fileID: 0}
+    prefab: {fileID: 5862869021014661295, guid: 7f3283c8e2f62224bb868005fbab1df0, type: 3}
     spawnTime: 0
     spawnDistance: 0
     spawnCount: 1
@@ -2876,8 +2880,8 @@ GameObject:
   - component: {fileID: 235104518}
   - component: {fileID: 235104517}
   m_Layer: 5
-  m_Name: Place_Potion (1)
-  m_TagString: Another
+  m_Name: Slot 2
+  m_TagString: AnotherPotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4230,8 +4234,8 @@ GameObject:
   - component: {fileID: 410420715}
   - component: {fileID: 410420714}
   m_Layer: 5
-  m_Name: Place_Potion (5)
-  m_TagString: Another
+  m_Name: Slot 6
+  m_TagString: AnotherPotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4392,6 +4396,7 @@ MonoBehaviour:
   speedMultiplier: 1
   merchantRange: {fileID: 1505787259}
   merchantAndPlayerDistance: 1
+  weapon: {fileID: 1787352062}
 --- !u!212 &410695756
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4456,7 +4461,8 @@ Transform:
   m_LocalPosition: {x: -4.6, y: 0.025573095, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1787352066}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &410695758
@@ -4513,6 +4519,7 @@ Transform:
   - {fileID: 1871077138}
   - {fileID: 216396894}
   - {fileID: 1444182090}
+  - {fileID: 1977153107}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &451433551
@@ -4974,8 +4981,8 @@ GameObject:
   - component: {fileID: 478225297}
   - component: {fileID: 478225296}
   m_Layer: 5
-  m_Name: Place_Potion (3)
-  m_TagString: Another
+  m_Name: Slot 4
+  m_TagString: AnotherPotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5050,8 +5057,8 @@ GameObject:
   - component: {fileID: 478854878}
   - component: {fileID: 478854877}
   m_Layer: 5
-  m_Name: DragImage (5)
-  m_TagString: Untagged
+  m_Name: Item 6
+  m_TagString: Potion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5072,7 +5079,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -224.99998, y: 0}
+  m_AnchoredPosition: {x: 114.7, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &478854877
@@ -5087,6 +5094,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86296df45f9d9b440b4fc17a770a6906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 1029509418}
+  DefaultValue: 0
+  CurrentValue: 0
+  itemCode: 0
 --- !u!114 &478854878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5807,8 +5818,8 @@ GameObject:
   - component: {fileID: 578220387}
   - component: {fileID: 578220386}
   m_Layer: 5
-  m_Name: Place_Potion (2)
-  m_TagString: Another
+  m_Name: Slot 3
+  m_TagString: AnotherPotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8601,8 +8612,8 @@ GameObject:
   - component: {fileID: 918334687}
   - component: {fileID: 918334689}
   m_Layer: 5
-  m_Name: DragImage
-  m_TagString: Untagged
+  m_Name: Item 1
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8676,6 +8687,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86296df45f9d9b440b4fc17a770a6906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 1029509418}
+  DefaultValue: 0
+  CurrentValue: 0
+  itemCode: 0
 --- !u!1 &932474314
 GameObject:
   m_ObjectHideFlags: 0
@@ -8841,8 +8856,8 @@ GameObject:
   - component: {fileID: 998412736}
   - component: {fileID: 998412735}
   m_Layer: 5
-  m_Name: Place_Another (1)
-  m_TagString: Another
+  m_Name: Slot 2
+  m_TagString: AnotherItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9036,6 +9051,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 1029509418}
+  currentItem: 
+  currentPotion: 
 --- !u!1 &1039443043
 GameObject:
   m_ObjectHideFlags: 0
@@ -10197,8 +10214,8 @@ GameObject:
   - component: {fileID: 1223486683}
   - component: {fileID: 1223486682}
   m_Layer: 5
-  m_Name: DragImage (1)
-  m_TagString: Untagged
+  m_Name: Item 2
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10234,6 +10251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86296df45f9d9b440b4fc17a770a6906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 1029509418}
+  DefaultValue: 0
+  CurrentValue: 0
+  itemCode: 0
 --- !u!114 &1223486683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10282,7 +10303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1245690212}
   m_Layer: 5
-  m_Name: Empty_PotionTab
+  m_Name: PotionBag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10300,8 +10321,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1762139337}
   - {fileID: 1806429779}
+  - {fileID: 1762139337}
   - {fileID: 2099755060}
   m_Father: {fileID: 1029509419}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10322,8 +10343,8 @@ GameObject:
   - component: {fileID: 1264459387}
   - component: {fileID: 1264459386}
   m_Layer: 5
-  m_Name: Place_Equip3
-  m_TagString: Equip
+  m_Name: Slot 9
+  m_TagString: ItemEquip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10397,8 +10418,8 @@ GameObject:
   - component: {fileID: 1266865199}
   - component: {fileID: 1266865198}
   m_Layer: 5
-  m_Name: Place_Another (4)
-  m_TagString: Another
+  m_Name: Slot 5
+  m_TagString: AnotherItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11175,8 +11196,8 @@ GameObject:
   - component: {fileID: 1400829773}
   - component: {fileID: 1400829772}
   m_Layer: 5
-  m_Name: DragImage (4)
-  m_TagString: Untagged
+  m_Name: Item 5
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11212,6 +11233,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86296df45f9d9b440b4fc17a770a6906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 1029509418}
+  DefaultValue: 0
+  CurrentValue: 0
+  itemCode: 0
 --- !u!114 &1400829773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11262,8 +11287,8 @@ GameObject:
   - component: {fileID: 1426466389}
   - component: {fileID: 1426466388}
   m_Layer: 5
-  m_Name: Place_Another (2)
-  m_TagString: Another
+  m_Name: Slot 3
+  m_TagString: AnotherItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12736,8 +12761,8 @@ GameObject:
   - component: {fileID: 1653519015}
   - component: {fileID: 1653519014}
   m_Layer: 5
-  m_Name: Place_Equip1
-  m_TagString: Equip
+  m_Name: Slot 7
+  m_TagString: ItemEquip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12811,8 +12836,8 @@ GameObject:
   - component: {fileID: 1657106379}
   - component: {fileID: 1657106378}
   m_Layer: 5
-  m_Name: Place_Another (3)
-  m_TagString: Another
+  m_Name: Slot 4
+  m_TagString: AnotherItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13229,8 +13254,8 @@ GameObject:
   - component: {fileID: 1694396890}
   - component: {fileID: 1694396889}
   m_Layer: 5
-  m_Name: Place_Equip2
-  m_TagString: Equip
+  m_Name: Slot 8
+  m_TagString: ItemEquip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13521,8 +13546,8 @@ GameObject:
   - component: {fileID: 1724659250}
   - component: {fileID: 1724659249}
   m_Layer: 5
-  m_Name: DragImage (3)
-  m_TagString: Untagged
+  m_Name: Item 4
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13558,6 +13583,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86296df45f9d9b440b4fc17a770a6906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 1029509418}
+  DefaultValue: 0
+  CurrentValue: 0
+  itemCode: 0
 --- !u!114 &1724659250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13608,8 +13637,8 @@ GameObject:
   - component: {fileID: 1727795544}
   - component: {fileID: 1727795543}
   m_Layer: 5
-  m_Name: Place_Another
-  m_TagString: Another
+  m_Name: Slot 1
+  m_TagString: AnotherItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14086,8 +14115,8 @@ GameObject:
   - component: {fileID: 1768657370}
   - component: {fileID: 1768657369}
   m_Layer: 5
-  m_Name: Place_Potion
-  m_TagString: Another
+  m_Name: Slot 1
+  m_TagString: AnotherPotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14224,6 +14253,140 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777810332}
   m_CullTransparentMesh: 1
+--- !u!1 &1787352062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1787352066}
+  - component: {fileID: 1787352065}
+  - component: {fileID: 1787352064}
+  - component: {fileID: 1787352063}
+  m_Layer: 0
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!58 &1787352063
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787352062}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &1787352064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787352062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3904836ceae81624dbfe6bfe5d43f445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isContact: 0
+--- !u!212 &1787352065
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787352062}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1787352066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787352062}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.998, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 410695757}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1799092391
 GameObject:
   m_ObjectHideFlags: 0
@@ -14370,8 +14533,8 @@ GameObject:
   - component: {fileID: 1806429781}
   - component: {fileID: 1806429780}
   m_Layer: 5
-  m_Name: Place_EquipPotion
-  m_TagString: Equip
+  m_Name: Slot 9
+  m_TagString: PotionEquip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14723,8 +14886,8 @@ GameObject:
   - component: {fileID: 1871325289}
   - component: {fileID: 1871325288}
   m_Layer: 5
-  m_Name: Place_Potion (6)
-  m_TagString: Another
+  m_Name: Slot 7
+  m_TagString: AnotherPotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15232,11 +15395,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPools:
-  - monsterType: 1
+  - monsterType: 0
     prefab: {fileID: 5862869021014661295, guid: 7f3283c8e2f62224bb868005fbab1df0, type: 3}
     initialSize: 1
   - monsterType: 1
-    prefab: {fileID: 0}
+    prefab: {fileID: 5862869021014661295, guid: 7f3283c8e2f62224bb868005fbab1df0, type: 3}
     initialSize: 10
   monsterParentTransform: {fileID: 1444182090}
 --- !u!4 &1956833601
@@ -15443,6 +15606,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1975628376}
   m_CullTransparentMesh: 1
+--- !u!1 &1977153106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1977153107}
+  - component: {fileID: 1977153108}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1977153107
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977153106}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.3393974, y: 0.088775076, z: -0.102609515}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 440895450}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1977153108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977153106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c056412a3c252441845045fb0b25258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveSetting:
+  - waveNumber: 0
+    monsters: 01000000
 --- !u!1 &1982667270
 GameObject:
   m_ObjectHideFlags: 0
@@ -15840,8 +16050,8 @@ GameObject:
   - component: {fileID: 2005016089}
   - component: {fileID: 2005016088}
   m_Layer: 5
-  m_Name: DragImage (6)
-  m_TagString: Untagged
+  m_Name: Item 7
+  m_TagString: Potion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15862,7 +16072,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -224.99998, y: 0}
+  m_AnchoredPosition: {x: 148.3, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2005016088
@@ -15877,6 +16087,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86296df45f9d9b440b4fc17a770a6906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 1029509418}
+  DefaultValue: 0
+  CurrentValue: 0
+  itemCode: 0
 --- !u!114 &2005016089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16944,8 +17158,8 @@ GameObject:
   - component: {fileID: 2127693579}
   - component: {fileID: 2127693578}
   m_Layer: 5
-  m_Name: Place_Another (5)
-  m_TagString: Another
+  m_Name: Slot 6
+  m_TagString: AnotherItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
