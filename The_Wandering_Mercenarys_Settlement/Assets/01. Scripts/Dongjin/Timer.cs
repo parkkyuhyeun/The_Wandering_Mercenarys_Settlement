@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [System.Serializable] // 인스펙터에서 보이게 하기 위해 필요
 public class MonsterEntry
@@ -34,131 +35,132 @@ public class Timer : MonoBehaviour
     [SerializeField] GameObject merchant;
 
     [Header("몬스터 값 설정")]
-    [SerializeField] List<MonsterEntry> monsters;
+    [SerializeField] public List<MonsterEntry> monsters;
 
     [Header("낮밤 시간 길이(초단위로 계산)")]
-    public float dayLength; // 낮의 길이 초단위로 계산
-    public float nightLength; // 밤의 길이 초단위로 계산
+     public float dayLength; // 낮의 길이 초단위로 계산
+     public float nightLength; // 밤의 길이 초단위로 계산
 
-    public bool isNight;
+    [Header("스폰 포인트")]
+    [SerializeField] private GameObject merchantSpawnPoint;
+    [SerializeField] private GameObject merchantMovePoint;
 
-    private float timer;
+    private int waveCount = 0;
+     private float timer;
+     public bool isNight;
     private GameObject player;
     private PlayerController playerController;
 
     private void Awake()
     {
+        GameScenes.globalTimer = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
+        waveCount = 0;
     }
 
     void Start()
-    {
-        StartDay();
-    }
+     {
+         StartDay();
+     }
 
-    void Update()
-    {
-        timer += Time.deltaTime;
-        if (isNight && timer > nightLength)
-        {
-            StartDay();
-        }
-        else if (!isNight && timer > dayLength)
-        {
-            StartNight();
-        }
-        if (!isNight && playerController.isAroundMerchant())
-        {
+     void Update()
+     {
+        //if (!GameScenes.globalGameManager.isGameStart)
+        //{
+        //    return;
+        //}
+         timer += Time.deltaTime;
+         if (isNight && timer > nightLength)
+         {
+             StartDay();
+         }
+         else if (!isNight && timer > dayLength)
+         {
+             StartNight();
+         }
+         if(!isNight && playerController.isAroundMerchant())
+         {
+
             clickUI.SetActive(true);
             Debug.Log("상인과 접촉했음");
+            
             if (Input.GetKeyDown(KeyCode.F))
             {
-                print("F");
                 shopUI.SetActive(true);
-                clickUI.SetActive(false);
+                Debug.Log("상점 오픈");
             }
-        }
+         }
         if (!playerController.isAroundMerchant())
         {
+            
             clickUI.SetActive(false);
+            Debug.Log("상인과 헤어짐");
+            if (shopUI.activeSelf)
+            {
+                shopUI.SetActive(false);
+                Debug.Log("상점 닫음");
+            }
         }
-    }
+     }
 
-    void StartDay()
-    {
-        isNight = false;
-        timer = 0;
-        SpawnMerchant(); // 낮에 상인 소환
-    }
+     void StartDay()
+     {
+         isNight = false;
+         timer = 0;
+         SpawnMerchant(); // 낮에 상인 소환
+     }
 
-    void StartNight()
-    {
-        isNight = true;
-        timer = 0;
-        RemoveMerchant(); // 상인 제거
+     void StartNight()
+     {
+         isNight = true;
+         timer = 0;
+         RemoveMerchant(); // 상인 제거
         shopUI.SetActive(false);
         clickUI.SetActive(false);
 
-
-        //StartMonsterWave();
+        StartMonsterWave(GameScenes.globalWaveManager.MonstersInWaves(waveCount));
+        waveCount++;
     }
 
     public void StartMonsterWave(ObjectType.Monster[] monsterTypes)
     {
-        for (int i = 0; i < monsterTypes.Length; i++)
-            SetMonsterValues(ref monsterTypes[i]);
-
-        for (int i = 0; i < monsterTypes.Length; i++)
+       for(int i = 0; i < monsterTypes.Length; ++i)
             StartCoroutine(SpawnMonster(monsterTypes[i]));
-
-    }
-
-    // 몬스터의 값 세팅
-    private void SetMonsterValues(ref ObjectType.Monster monster)
-    {
-        foreach (var item in monsters)
-        {
-            if (item.type == monster.name)
-            {
-                monster.spawnTime = item.spawnTime;
-                break;
-            }
-        }
-
-        foreach (var item in monsters)
-        {
-            if (item.type == monster.name)
-            {
-                monster.spawnDistance = item.spawnDistance;
-                break;
-            }
-        }
-
-        foreach (var item in monsters)
-        {
-            if (item.type == monster.name)
-            {
-                monster.spawnCount = item.spawnCount;
-                break;
-            }
-        }
     }
 
     IEnumerator SpawnMonster(ObjectType.Monster monster)
     {
         //풀매니저 호출
-        GameScenes.globalPoolManager.SpawnMonster(monster.name, monster.spawnDistance, player.transform.position, monster.spawnCount, monster.spawnTime);
-        yield return null;
+        GameScenes.globalPoolManager.SpawnMonster(monster.name, monster.spawnDistance, player.transform.position, monster.spawnCount);
+        yield return new WaitForSeconds(monster.spawnTime);
     }
 
     void SpawnMerchant()
-    {
+     {
         merchant.SetActive(true);
+        MoveRight();
+     }
+
+     void RemoveMerchant()
+     {
+        merchant.SetActive(false);
+        GoToSpawnPoint();
     }
 
-    void RemoveMerchant()
+    private void MoveRight()
     {
-        merchant.SetActive(false);
+        
+        //걷기 애니메이션 처리
+
+        //움직이기
+        Vector2.MoveTowards(merchant.transform.position, merchantMovePoint.transform.position, float.MaxValue);
+        //아이들 애니메이션 전환
+
+    }
+
+    private void GoToSpawnPoint()
+    {
+        merchant.transform.position = merchantSpawnPoint.transform.position;
     }
 }

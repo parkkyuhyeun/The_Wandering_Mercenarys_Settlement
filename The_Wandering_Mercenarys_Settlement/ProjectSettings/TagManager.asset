@@ -5,13 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Timer
-  - Item
-  - Potion
-  - ItemEquip
-  - PotionEquip
-  - AnotherItem
-  - AnotherPotion
+  - Weapon
   layers:
   - Default
   - TransparentFX
