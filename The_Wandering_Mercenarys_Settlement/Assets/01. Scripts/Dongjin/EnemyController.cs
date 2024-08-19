@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour
     private Collider2D enemyCollider;
     private bool isPossibleAttack = true;
     private GameObject hand;
+    public int curLevel = 1;
 
 
     private void Awake()
@@ -65,6 +66,8 @@ public class EnemyController : MonoBehaviour
         {
             //풀에 다시 넣기
             GameScenes.globalPoolManager.DespawnMonster(gameObject, enemySO.monsterType);
+            //플레이어 경험치 획득
+            GameScenes.globalPlayerController.SetEXP(GameScenes.globalLevelManager.GetEXP(curLevel, enemySO.GiveExp));
         }
     }
 
@@ -72,7 +75,28 @@ public class EnemyController : MonoBehaviour
     {
         //몇초 기다렸다 달려가기
         yield return new WaitForSeconds(waitTime);
+        curLevel = GameScenes.globalWaveManager.GetCurWave();
+        EnemyStatSetting();
         letsGo = true;
+    }
+
+    private void EnemyStatSetting()
+    {
+        // 스탯을 레벨에 맞게 조정
+        enemySO.MaxHP *= Mathf.Pow(enemySO.hpIncreaseRate, curLevel - 1);
+        enemySO.Damage *= Mathf.Pow(enemySO.damageIncreaseRate, curLevel - 1);
+        enemySO.AttackCooldown *= Mathf.Pow(enemySO.cooldownDecreaseRate, curLevel - 1);
+
+        // 원거리 적일 경우 추가 스탯 조정
+        if (enemySO.Series == 1)
+        {
+            enemySO.AttackDistance *= Mathf.Pow(enemySO.rangeIncreaseRate, curLevel - 1);
+            enemySO.bulletLifeTime *= Mathf.Pow(enemySO.bulletLifeIncreaseRate, curLevel - 1);
+            enemySO.bulletSpeed *= Mathf.Pow(enemySO.bulletSpeedIncreaseRate, curLevel - 1);
+        }
+
+        // 현재 체력을 최대 체력으로 갱신
+        curHP = enemySO.MaxHP;
     }
 
     private void OnEnable()

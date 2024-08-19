@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
@@ -19,14 +20,17 @@ public class WavePackage
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private List<WavePackage> waveSetting = new List<WavePackage>();
+    private int curWaveNumber;
 
     private void Awake()
     {
         GameScenes.globalWaveManager = this;
+        curWaveNumber = 0;
     }
 
     public ObjectType.Monster[] MonstersInWaves(int waveCnt)
     {
+        curWaveNumber = waveCnt;
         ObjectType.Monster[] monsters = null;
         foreach (WavePackage wave in waveSetting)
         {
@@ -60,5 +64,10 @@ public class WaveManager : MonoBehaviour
         }
         var monster = new ObjectType.Monster(curMonster.type, curMonster.spawnTime, curMonster.spawnDistance, curMonster.spawnCount);
         return monster;
+    }
+
+    public int GetCurWave()
+    {
+        return curWaveNumber;
     }
 }

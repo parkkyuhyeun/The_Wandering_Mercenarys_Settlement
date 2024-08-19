@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("스탯")]
     [SerializeField] private PlayerSO playerSO;
-    [SerializeField] private float damageCooltime;
 
     private Rigidbody2D rigid;
     public Collider2D playerCollider;
@@ -55,12 +54,28 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(FinishCoolDown());
             }
         }
-        
+
+        if(playerSO.curEXP > playerSO.nextEXP)
+        {
+            GameScenes.globalLevelManager.LevelUp(ref playerSO);
+
+        }
+    }
+
+    private void PlayerStatSetting()
+    {
+        // 스탯을 레벨에 맞게 조정
+        playerSO.MaxHP *= Mathf.Pow(playerSO.hpIncreaseRate, playerSO.Level);
+        playerSO.Damage *= Mathf.Pow(playerSO.damageIncreaseRate, playerSO.Level);
+        playerSO.AttackCooldown *= Mathf.Pow(playerSO.cooldownDecreaseRate, playerSO.Level);
+
+        // 현재 체력을 최대 체력으로 갱신
+        curHP = playerSO.MaxHP;
     }
 
     private IEnumerator FinishCoolDown()
     {
-        yield return new WaitForSeconds(damageCooltime);
+        yield return new WaitForSeconds(playerSO.AttackCooldown);
         isFinishCoolDown=true;
             
     }
@@ -119,5 +134,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log("플레이어 사망");
             //사망 처리
         }
+    }
+
+    public void SetEXP(float exp)
+    {
+        playerSO.curEXP += exp;
     }
 }
