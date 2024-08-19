@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        GameScenes.globalPlayerController = this;
         rigid = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
@@ -112,8 +113,10 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float Damage)
     {
         curHP -= Damage;
+        Debug.Log("플레이어: 아야");
         if(curHP < 0)
         {
+            Debug.Log("플레이어 사망");
             //사망 처리
         }
     }
