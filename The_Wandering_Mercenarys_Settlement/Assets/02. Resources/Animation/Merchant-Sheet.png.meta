@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e5d3412f40a0c0f488290d4a9762f972
+guid: 8a80b8c4ea6d9a74d9b2025ae2854710
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,30 +93,122 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MerchantSheet_0
+      name: Merchant_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 280
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b5fa7432e9386a4a8f79dfe98ff51e0
+      internalID: 2079608681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merchant_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 280
+        width: 280
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30cab36b213e1534589599f8507c7e51
+      internalID: 748706209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merchant_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 280
+        width: 280
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fadfdfcf7e43c024fbe0dd2bf8c3c92e
+      internalID: 1918055296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merchant_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 280
+        width: 280
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7c2660efec6bd3438981f68998142d6
+      internalID: 1037982464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merchant_Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 280
+        width: 280
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b322a0c24f274da42bf8887cadbe3fb0
+      internalID: 1684257859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merchant_Sheet_5
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 56
-        height: 56
+        width: 280
+        height: 280
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +216,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b91a4666e0ce33a4cae9b8978f2432ef
-      internalID: 1656511749
+      spriteID: 51bc06ebbd81aef409e76fa6615f4ed8
+      internalID: 1978585916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MerchantSheet_1
+      name: Merchant_Sheet_6
       rect:
         serializedVersion: 2
-        x: 56
+        x: 280
         y: 0
-        width: 56
-        height: 56
+        width: 280
+        height: 280
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 913bf18ff9750ef4c92cf9b061da1c1a
-      internalID: 1751831968
+      spriteID: c07c1d880331f7d4695032a66e9d27b9
+      internalID: 2007772100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MerchantSheet_2
+      name: Merchant_Sheet_7
       rect:
         serializedVersion: 2
-        x: 112
+        x: 560
         y: 0
-        width: 56
-        height: 56
+        width: 280
+        height: 280
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +258,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 959247fb4332f7d4c97c2aba8ad1c5f8
-      internalID: -2105934907
+      spriteID: c9b6a320abda4174aae23be6e74a4356
+      internalID: 1577033242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MerchantSheet_3
+      name: Merchant_Sheet_8
       rect:
         serializedVersion: 2
-        x: 168
+        x: 840
         y: 0
-        width: 56
-        height: 56
+        width: 280
+        height: 280
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,8 +279,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0cf2ac4c6a5461343a44950cfe2e2de3
-      internalID: 351266630
+      spriteID: 0e23a877cf96c6346906b01c00868c99
+      internalID: -671437262
       vertices: []
       indices: 
       edges: []
@@ -204,10 +296,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MerchantSheet_0: 1656511749
-      MerchantSheet_1: 1751831968
-      MerchantSheet_2: -2105934907
-      MerchantSheet_3: 351266630
+      Merchant_Sheet_0: 2079608681
+      Merchant_Sheet_1: 748706209
+      Merchant_Sheet_2: 1918055296
+      Merchant_Sheet_3: 1037982464
+      Merchant_Sheet_4: 1684257859
+      Merchant_Sheet_5: 1978585916
+      Merchant_Sheet_6: 2007772100
+      Merchant_Sheet_7: 1577033242
+      Merchant_Sheet_8: -671437262
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
