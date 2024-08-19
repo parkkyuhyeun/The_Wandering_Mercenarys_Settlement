@@ -22,6 +22,7 @@ public class PoolManager : MonoBehaviour
     [SerializeField] public List<MonsterPool> monsterPools;
     [SerializeField] public List<WeaponPool> weaponPools;
     [SerializeField] private Transform monsterParentTransform;
+    [SerializeField] private Transform weaponParentTransform;
     private Dictionary<ObjectType.MonsterType, Queue<GameObject>> poolDictionary;
     private Dictionary<ObjectType.WeaponType, Queue<GameObject>> weaponPoolDictionary;
     private GameObject[] monsterToSpawn;
@@ -65,7 +66,7 @@ public class PoolManager : MonoBehaviour
 
             for (int i = 0; i < weapon.initialSize; i++)
             {
-                GameObject obj = Instantiate(weapon.prefab);
+                GameObject obj = Instantiate(weapon.prefab, weaponParentTransform);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }

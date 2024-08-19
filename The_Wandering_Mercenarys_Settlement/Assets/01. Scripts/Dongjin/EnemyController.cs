@@ -23,7 +23,8 @@ public class EnemyController : MonoBehaviour
     {
         GameScenes.globalEnemyController = this;  
         enemyCollider = GetComponent<Collider2D>();
-        hand = GetComponentInChildren<GameObject>();
+        hand = GetComponentInChildren<Transform>().gameObject;
+
     }
 
     void Start()
@@ -34,7 +35,8 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        
+        if (!letsGo) return;
+        AttackPlayer();
     }
 
     private void FixedUpdate()
@@ -121,11 +123,20 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator ShootAttack()
     {
+        var bullet = GameScenes.globalPoolManager.SpawnWeapon(enemySO.weaponType);
+        bullet.transform.position = hand.transform.position;
+        var bulletCol = bullet.GetComponent<Collider2D>();
         float timer = 0;
-        while (true)
+        while (!(timer >= enemySO.bulletLifeTime))
         {
-            var bullet = GameScenes.globalPoolManager.SpawnWeapon(ObjectType.WeaponType.enemyBullet);
-            bullet.transform.position = hand.transform.position;
+            if(bulletCol.Distance(GameScenes.globalPlayerController.playerCollider).distance < 0.1f)
+            {
+                Debug.Log("크킄 총알에 맞았구나");
+                //총알 피격 이펙트
+
+                GameScenes.globalPlayerController.TakeDamage(enemySO.Damage);
+                break;
+            }
             // 플레이어와 적 사이의 방향을 계산
             Vector2 direction = (player.transform.position - bullet.transform.position).normalized;
 
@@ -134,7 +145,12 @@ public class EnemyController : MonoBehaviour
             bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
 
             // 플레이어 방향으로 이동
-            bullet.transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+            bullet.transform.Translate(Vector2.right * enemySO.bulletSpeed * Time.deltaTime);
+            timer += Time.deltaTime;
+            yield return null;
         }
+        Debug.Log("총알 맞추기 실패");
+        GameScenes.globalPoolManager.DespawnWeapon(bullet, enemySO.weaponType);
+        yield return null;
     }
 }
