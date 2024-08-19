@@ -159,11 +159,11 @@ public class Timer : MonoBehaviour
     {
 
         //걷기 애니메이션 처리
-        //anim.SetTrigger("walk");
+        anim.SetBool("isWalk", true);
         //merchantSpawnPoint에서 merchantMovePoint 까지 일정 시간동안 자연스럽게 이동하기
         StartCoroutine(MoveToPosition(targetPosition, 1.5f));
         //아이들 애니메이션 전환
-        //anim.SetTrigger("idle");
+        anim.SetBool("isWalk", false);
         
     }
 

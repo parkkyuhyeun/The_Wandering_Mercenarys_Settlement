@@ -10,6 +10,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] GameObject potionTab;
     [SerializeField] GameObject[] informationTabs;
     [SerializeField] GameObject[] soldOutPanel;
+    [SerializeField] GameObject[] gettingItem;
 
     [SerializeField] TextMeshProUGUI currentCoinTxt;
 
@@ -76,5 +77,10 @@ public class ShopUI : MonoBehaviour
         {
             soldOutPanel[num].SetActive(true);
         }
+    }
+
+    public void GetItem(int num)
+    {
+        gettingItem[num].SetActive(true);
     }
 }
