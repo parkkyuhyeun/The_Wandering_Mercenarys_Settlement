@@ -21,9 +21,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float damageCooltime;
 
     private Rigidbody2D rigid;
-    private Collider2D playerCollider;
+    public Collider2D playerCollider;
     private bool isFinishCoolDown = true;
     private Animator anim;
+    private float curHP;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         weapon = GameObject.FindGameObjectWithTag("Weapon");
+        curHP = playerSO.MaxHP;
     }
 
     private void Update()
@@ -105,5 +107,14 @@ public class PlayerController : MonoBehaviour
             GameScenes.globalWeapon.EnemyObj.GetComponent<EnemyController>().TakeDamage(playerSO.Damage);
         }
         
+    }
+
+    public void TakeDamage(float Damage)
+    {
+        curHP -= Damage;
+        if(curHP < 0)
+        {
+            //»ç¸Á Ã³¸®
+        }
     }
 }

@@ -52,6 +52,7 @@ public class Timer : MonoBehaviour
     private GameObject player;
     private PlayerController playerController;
     private bool isFirstMove;
+    private Animator anim;
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class Timer : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
         waveCount = 0;
+        anim = merchant.GetComponent<Animator>();
     }
 
     void Start()
@@ -149,19 +151,19 @@ public class Timer : MonoBehaviour
      void RemoveMerchant()
      {
         isFirstMove = true;
-        merchant.SetActive(false);
         MoveRight(merchantEndPoint.transform.position);
+        merchant.SetActive(false);
     }
 
     private void MoveRight(Vector3 targetPosition)
     {
 
         //걷기 애니메이션 처리
-
+        //anim.SetTrigger("walk");
         //merchantSpawnPoint에서 merchantMovePoint 까지 일정 시간동안 자연스럽게 이동하기
         StartCoroutine(MoveToPosition(targetPosition, 1.5f));
         //아이들 애니메이션 전환
-
+        //anim.SetTrigger("idle");
         
     }
 

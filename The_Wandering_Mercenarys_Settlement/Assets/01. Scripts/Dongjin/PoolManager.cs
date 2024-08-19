@@ -11,11 +11,21 @@ public class PoolManager : MonoBehaviour
         public GameObject prefab;
         public int initialSize;
     }
+    [System.Serializable]
+    public class WeaponPool
+    {
+        public ObjectType.WeaponType weaponType;
+        public GameObject prefab;
+        public int initialSize;
+    }
 
     [SerializeField] public List<MonsterPool> monsterPools;
+    [SerializeField] public List<WeaponPool> weaponPools;
     [SerializeField] private Transform monsterParentTransform;
     private Dictionary<ObjectType.MonsterType, Queue<GameObject>> poolDictionary;
+    private Dictionary<ObjectType.WeaponType, Queue<GameObject>> weaponPoolDictionary;
     private GameObject[] monsterToSpawn;
+    private GameObject weaponToSpawn;
 
 
     private void Awake()
@@ -46,6 +56,22 @@ public class PoolManager : MonoBehaviour
 
             poolDictionary.Add(pool.monsterType, objectPool);
         }
+
+        weaponPoolDictionary = new Dictionary<ObjectType.WeaponType, Queue<GameObject>>();
+
+        foreach(var weapon in weaponPools)
+        {
+            Queue<GameObject> objectPool = new Queue<GameObject>();
+
+            for (int i = 0; i < weapon.initialSize; i++)
+            {
+                GameObject obj = Instantiate(weapon.prefab);
+                obj.SetActive(false);
+                objectPool.Enqueue(obj);
+            }
+
+            weaponPoolDictionary.Add(weapon.weaponType, objectPool);
+        }
     }
 
     public GameObject[] SpawnMonster(ObjectType.MonsterType type, float distance, Vector3 playerPosition, int spawnCount)
@@ -68,11 +94,37 @@ public class PoolManager : MonoBehaviour
         return monsterToSpawn;
     }
 
+    public GameObject SpawnWeapon(ObjectType.WeaponType type)
+    {
+        if (!weaponPoolDictionary.ContainsKey(type))
+        {
+            Debug.LogError("No pool with such type!");
+            return null;
+        }
+        
+        weaponToSpawn = weaponPoolDictionary[type].Count > 0 ? weaponPoolDictionary[type].Dequeue() : Instantiate(GetPrefabByType(type));
+        weaponToSpawn.SetActive(true);
+
+        return weaponToSpawn;
+    }
+
     private GameObject GetPrefabByType(ObjectType.MonsterType type)
     {
         foreach (var pool in monsterPools)
         {
             if (pool.monsterType == type)
+            {
+                return pool.prefab;
+            }
+        }
+        return null;
+    }
+
+    private GameObject GetPrefabByType(ObjectType.WeaponType type)
+    {
+        foreach (var pool in weaponPools)
+        {
+            if (pool.weaponType == type)
             {
                 return pool.prefab;
             }
@@ -97,6 +149,19 @@ public class PoolManager : MonoBehaviour
         else
         {
             Destroy(monster);
+        }
+    }
+
+    public void DespawnWeapon(GameObject weapon, ObjectType.WeaponType type)
+    {
+        weapon.SetActive(false);
+        if (weaponPoolDictionary.ContainsKey(type))
+        {
+            weaponPoolDictionary[type].Enqueue(weapon);
+        }
+        else
+        {
+            Destroy(weapon);
         }
     }
 }

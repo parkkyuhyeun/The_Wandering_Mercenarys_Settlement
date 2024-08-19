@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerSO : ScriptableObject
 {
     public float MaxHP;
-    public float CurHP;
     public float Damage;
     public int Level;
 }
