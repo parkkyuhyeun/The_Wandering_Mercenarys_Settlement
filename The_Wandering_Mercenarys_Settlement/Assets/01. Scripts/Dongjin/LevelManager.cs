@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour
         GameScenes.globalLevelManager = this;
     }
 
+
+
     public float GetEXP()
     {
 

@@ -162,13 +162,14 @@ public class Timer : MonoBehaviour
         anim.SetBool("isWalk", true);
         //merchantSpawnPoint에서 merchantMovePoint 까지 일정 시간동안 자연스럽게 이동하기
         StartCoroutine(MoveToPosition(targetPosition, 1.5f));
-        //아이들 애니메이션 전환
-        anim.SetBool("isWalk", false);
+        
+        
         
     }
 
     private IEnumerator MoveToPosition(Vector3 targetPosition, float duration)
     {
+        
         float time = 0;
         Vector3 startPosition = merchant.transform.position;
 
@@ -181,6 +182,7 @@ public class Timer : MonoBehaviour
 
         merchant.transform.position = targetPosition;
         if (isFirstMove) GoToSpawnPoint();
+        anim.SetBool("isWalk", false);
     }
 
     private void GoToSpawnPoint()
