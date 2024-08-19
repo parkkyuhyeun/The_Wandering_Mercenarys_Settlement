@@ -6,8 +6,10 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI dayTime;
+    [SerializeField] GameObject inventory;
 
     Timer _timer;
+    InventoryUI _inven;
 
     public int cc;
     public int dc;
@@ -17,6 +19,16 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         _timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
+        _inven = inventory.GetComponent<InventoryUI>();
+
+        for (int i = 0; i < 10; i++)
+        {
+            _inven.currentItem.Add(0);
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            _inven.currentPotion.Add(0);
+        }
     }
 
     private void Update()

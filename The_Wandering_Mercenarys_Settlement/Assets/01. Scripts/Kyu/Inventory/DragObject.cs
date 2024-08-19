@@ -9,8 +9,8 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
 {
     [SerializeField] GameObject inventory;
     [SerializeField] GameObject uiManager;
-    InventoryUI inUi;
-    UIManager ui;
+    InventoryUI _inUi;
+    UIManager _ui;
 
     public static Vector2 DefaultPos;
     public static Vector2 setPos;
@@ -22,8 +22,8 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
 
     private void Awake()
     {
-        inUi = inventory.GetComponent<InventoryUI>();
-        ui = uiManager.GetComponent<UIManager>();
+        _inUi = inventory.GetComponent<InventoryUI>();
+        _ui = uiManager.GetComponent<UIManager>();
         itemCode = gameObject.name[5] - '0';
     }
 
@@ -67,13 +67,13 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
                 if (results[i].gameObject.CompareTag("ItemEquip") || results[i].gameObject.CompareTag("AnotherItem"))
                 {
                     CurrentValue = results[i].gameObject.name[5] - '0';
-                    if (inUi.currentItem[CurrentValue] == 0)
+                    if (_inUi.currentItem[CurrentValue] == 0)
                     {
                         setPos = results[i].gameObject.transform.position;
-                        ui.dc = inUi.currentItem[DefaultValue];
-                        inUi.currentItem[CurrentValue] = itemCode;
-                        ui.cc = inUi.currentItem[CurrentValue];
-                        inUi.currentItem[DefaultValue] = 0;
+                        _ui.dc = _inUi.currentItem[DefaultValue];
+                        _inUi.currentItem[CurrentValue] = itemCode;
+                        _ui.cc = _inUi.currentItem[CurrentValue];
+                        _inUi.currentItem[DefaultValue] = 0;
                         return true;
                     }
                     else
@@ -87,13 +87,13 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
                 if (results[i].gameObject.CompareTag("PotionEquip") || results[i].gameObject.CompareTag("AnotherPotion"))
                 {
                     CurrentValue = results[i].gameObject.name[5] - '0';
-                    if (inUi.currentPotion[CurrentValue] == 0)
+                    if (_inUi.currentPotion[CurrentValue] == 0)
                     {
                         setPos = results[i].gameObject.transform.position;
-                        ui.dc = inUi.currentPotion[DefaultValue];
-                        inUi.currentPotion[CurrentValue] = itemCode;
-                        ui.cc = inUi.currentPotion[CurrentValue];
-                        inUi.currentPotion[DefaultValue] = 0;
+                        _ui.dc = _inUi.currentPotion[DefaultValue];
+                        _inUi.currentPotion[CurrentValue] = itemCode;
+                        _ui.cc = _inUi.currentPotion[CurrentValue];
+                        _inUi.currentPotion[DefaultValue] = 0;
                         return true;
                     }
                     else

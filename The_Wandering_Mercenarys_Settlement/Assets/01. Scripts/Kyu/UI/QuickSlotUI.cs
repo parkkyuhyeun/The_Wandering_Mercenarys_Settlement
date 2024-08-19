@@ -7,45 +7,34 @@ public class QuickSlotUI : MonoBehaviour
     [SerializeField] List<GameObject> showItemList = new List<GameObject>();
     [SerializeField] GameObject inventory;
 
-    InventoryUI inven;
+    InventoryUI _inven;
 
     private void Awake()
     {
-        inven = inventory.GetComponent<InventoryUI>();
+        _inven = inventory.GetComponent<InventoryUI>();
     }
 
     private void Update()
     {
-
-    }
-
-    public void Change(int cc, int dc)
-    {
-        StartCoroutine(ChangeItem(cc, dc));
-    }
-
-    public IEnumerator ChangeItem(int cc, int dc)
-    {
-        if (gameObject.name[9] - '0' == 1)
+        if (gameObject.name[9] == '1')
         {
-            showItemList[cc - 1].SetActive(true);
-            showItemList[dc - 1].SetActive(false);
+            if (_inven.currentItem[7] != 0) showItemList[_inven.currentItem[7] - 1].SetActive(true);
+            else for (int i = 0; i < showItemList.Count; i++) showItemList[i].SetActive(false);
         }
-        if (gameObject.name[9] - '0' == 2)
+        if (gameObject.name[9] == '2')
         {
-            showItemList[cc - 1].SetActive(true);
-            showItemList[dc - 1].SetActive(false);
+            if (_inven.currentItem[8] != 0) showItemList[_inven.currentItem[8] - 1].SetActive(true);
+            else for (int i = 0; i < showItemList.Count; i++) showItemList[i].SetActive(false);
         }
-        if (gameObject.name[9] - '0' == 3)
+        if (gameObject.name[9] == '3')
         {
-            showItemList[cc - 1].SetActive(true);
-            showItemList[dc - 1].SetActive(false);
+            if (_inven.currentItem[9] != 0) showItemList[_inven.currentItem[9] - 1].SetActive(true);
+            else for (int i = 0; i < showItemList.Count; i++) showItemList[i].SetActive(false);
         }
-        if (gameObject.name[9] - '0' == 4)
+        if (gameObject.name[9] == '4')
         {
-            showItemList[cc - 1].SetActive(true);
-            showItemList[dc - 1].SetActive(false);
+            if (_inven.currentPotion[9] != 0) showItemList[_inven.currentPotion[9] - 1].SetActive(true);
+            else for (int i = 0; i < showItemList.Count; i++) showItemList[i].SetActive(false);
         }
-        yield return null;
     }
 }
