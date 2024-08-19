@@ -13,16 +13,22 @@ public class ShopUI : MonoBehaviour
     [SerializeField] GameObject[] gettingItem;
 
     [SerializeField] TextMeshProUGUI currentCoinTxt;
+    [SerializeField] GameObject uimanager;
 
-    int currentCoin = 1000;
+    UIManager ui;
+
     int currentItemNum = 0;
 
     int[] haveArrays;
     int[] isSoldOuts;
 
+    private void Awake()
+    {
+        ui = uimanager.GetComponent<UIManager>();
+    }
     private void Start()
     {
-        currentCoinTxt.text = $"{currentCoin} Coin";
+        currentCoinTxt.text = $"{ui.currentCoin} Coin";
         isSoldOuts = new int[informationTabs.Length];
         haveArrays = new int[informationTabs.Length];
 
@@ -58,10 +64,10 @@ public class ShopUI : MonoBehaviour
 
     public void Buy(int cost)
     {
-        if(currentCoin >= cost && isSoldOuts[currentItemNum] != 1)
+        if(ui.currentCoin >= cost && isSoldOuts[currentItemNum] != 1)
         {
-            currentCoinTxt.text = $"{currentCoin - cost} Coin";
-            currentCoin -= cost;
+            currentCoinTxt.text = $"{ui.currentCoin - cost} Coin";
+            ui.currentCoin -= cost;
             haveArrays[currentItemNum]--;
 
             if (haveArrays[currentItemNum] == 0)

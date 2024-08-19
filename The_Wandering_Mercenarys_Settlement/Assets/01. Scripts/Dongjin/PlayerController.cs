@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public Collider2D playerCollider;
     private bool isFinishCoolDown = true;
     private Animator anim;
-    private float curHP;
+    public float curHP;
 
     private void Awake()
     {
