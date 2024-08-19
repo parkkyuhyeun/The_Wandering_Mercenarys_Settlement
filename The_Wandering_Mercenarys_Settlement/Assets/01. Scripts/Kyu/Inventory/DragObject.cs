@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,7 +8,9 @@ using UnityEngine.EventSystems;
 public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] GameObject inventory;
+    [SerializeField] GameObject uiManager;
     InventoryUI inUi;
+    UIManager ui;
 
     public static Vector2 DefaultPos;
     public static Vector2 setPos;
@@ -20,6 +23,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     private void Awake()
     {
         inUi = inventory.GetComponent<InventoryUI>();
+        ui = uiManager.GetComponent<UIManager>();
         itemCode = gameObject.name[5] - '0';
     }
 
@@ -66,7 +70,9 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
                     if (inUi.currentItem[CurrentValue] == 0)
                     {
                         setPos = results[i].gameObject.transform.position;
+                        ui.dc = inUi.currentItem[DefaultValue];
                         inUi.currentItem[CurrentValue] = itemCode;
+                        ui.cc = inUi.currentItem[CurrentValue];
                         inUi.currentItem[DefaultValue] = 0;
                         return true;
                     }
@@ -84,7 +90,9 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
                     if (inUi.currentPotion[CurrentValue] == 0)
                     {
                         setPos = results[i].gameObject.transform.position;
+                        ui.dc = inUi.currentPotion[DefaultValue];
                         inUi.currentPotion[CurrentValue] = itemCode;
+                        ui.cc = inUi.currentPotion[CurrentValue];
                         inUi.currentPotion[DefaultValue] = 0;
                         return true;
                     }

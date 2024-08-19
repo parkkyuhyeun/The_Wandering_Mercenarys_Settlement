@@ -9,6 +9,9 @@ public class UIManager : MonoBehaviour
 
     Timer _timer;
 
+    public int cc;
+    public int dc;
+
     private bool day = true;
 
     private void Awake()
