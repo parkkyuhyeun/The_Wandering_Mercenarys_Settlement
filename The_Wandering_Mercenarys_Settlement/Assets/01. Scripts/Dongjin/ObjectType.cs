@@ -10,9 +10,9 @@ public class ObjectType : MonoBehaviour
         empty, Goblin, Slime, Skeleton, GoblinKing, SlimeKing, SkeletonKing, RedDragon, 
     }
 
-    public enum ObstacleType
+    public enum WeaponType
     {
-
+        enemyBullet,
     }
 
     public class Monster

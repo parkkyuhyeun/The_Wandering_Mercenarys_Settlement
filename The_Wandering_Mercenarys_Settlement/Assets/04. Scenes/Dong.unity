@@ -2952,9 +2952,9 @@ MonoBehaviour:
   - waveNumber: 0
     monsters: 01000000
   - waveNumber: 1
-    monsters: 0100000001000000
+    monsters: 01000000
   - waveNumber: 2
-    monsters: 010000000100000001000000
+    monsters: 01000000
 --- !u!4 &361494374
 Transform:
   m_ObjectHideFlags: 0
@@ -4316,7 +4316,7 @@ MonoBehaviour:
   merchantAndPlayerDistance: 1
   weapon: {fileID: 862550832}
   playerSO: {fileID: 11400000, guid: 5cfb29e4cd150b845b1a50e11ef49f17, type: 2}
-  damageCooltime: 2
+  damageCooltime: 1
 --- !u!212 &532204819
 SpriteRenderer:
   m_ObjectHideFlags: 0

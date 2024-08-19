@@ -15,4 +15,5 @@ public class GameScenes
     public static Timer globalTimer;
     public static EnemyController globalEnemyController;
     public static Weapon globalWeapon;
+    public static PlayerController globalPlayerController;
 }
