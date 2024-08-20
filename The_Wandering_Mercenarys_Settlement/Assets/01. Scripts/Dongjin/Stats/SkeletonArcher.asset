@@ -12,12 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8159995574cf2ae429d35245bdfa234d, type: 3}
   m_Name: SkeletonArcher
   m_EditorClassIdentifier: 
-  monsterType: 0
-  MaxHP: 100
-  Damage: 20
-  AttackCooldown: 3
-  AttackDistance: 5
+  monsterType: 3
+  MaxHP: 33.489788
+  Damage: 3.3489795
+  AttackCooldown: 3.7633538
+  AttackDistance: 5.644738
+  GiveExp: 10
   Series: 1
-  bulletLifeTime: 1000
-  bulletSpeed: 1
+  bulletLifeTime: 0.43895754
+  bulletSpeed: 3.3489795
   weaponType: 0
+  hpIncreaseRate: 1.2
+  damageIncreaseRate: 1.2
+  cooldownDecreaseRate: 0.9
+  rangeIncreaseRate: 1.1
+  bulletLifeIncreaseRate: 1.5
+  bulletSpeedIncreaseRate: 1.2

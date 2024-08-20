@@ -27,6 +27,6 @@ public class LevelManager : MonoBehaviour
 
     public float GetEXP(int enemyLevel, float exp)
     {
-        return enemyLevel * baseExp + exp;
+        return enemyLevel * (int)GameScenes.globalPlayerController.playerSO.nextEXP / 100 + exp;
     }
 }
