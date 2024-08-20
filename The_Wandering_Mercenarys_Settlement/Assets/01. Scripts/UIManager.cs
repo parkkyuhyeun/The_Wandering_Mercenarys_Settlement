@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI currentCoinTxt;
     [SerializeField] TextMeshProUGUI currentHPTxt;
+    [SerializeField] TextMeshProUGUI currentExpTxt;
+    [SerializeField] TextMeshProUGUI currentLevelTxt;
     [SerializeField] TextMeshProUGUI dayTime;
     [SerializeField] GameObject inventory;
     [SerializeField] GameObject player;
