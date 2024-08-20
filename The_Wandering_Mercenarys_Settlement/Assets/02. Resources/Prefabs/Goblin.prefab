@@ -134,6 +134,7 @@ MonoBehaviour:
   enemySO: {fileID: 11400000, guid: 401927398f4a9f047a1045ac5cbe846a, type: 2}
   moveSpeed: 0.8
   waitTime: 1
+  curLevel: 1
 --- !u!58 &9077770776159949387
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -163,12 +164,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.8
 --- !u!50 &7878429092579195823
 Rigidbody2D:
   serializedVersion: 4

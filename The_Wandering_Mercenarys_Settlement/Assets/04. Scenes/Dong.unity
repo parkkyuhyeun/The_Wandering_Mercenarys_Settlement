@@ -4383,7 +4383,7 @@ Transform:
   m_GameObject: {fileID: 532204817}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0884697, y: 0.025573095, z: 0}
+  m_LocalPosition: {x: 2.09, y: 0.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4420,7 +4420,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -7123,9 +7123,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.6, y: 0.6}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.8
 --- !u!212 &862550835
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9906,20 +9906,20 @@ MonoBehaviour:
   clickUI: {fileID: 737979390}
   merchant: {fileID: 1923793690}
   monsters:
-  - type: 1
-    prefab: {fileID: 5862869021014661295, guid: 7f3283c8e2f62224bb868005fbab1df0, type: 3}
-    spawnTime: 0
-    spawnDistance: 10
-    spawnCount: 3
   - type: 0
     prefab: {fileID: 5862869021014661295, guid: 7f3283c8e2f62224bb868005fbab1df0, type: 3}
     spawnTime: 0
     spawnDistance: 0
     spawnCount: 1
+  - type: 1
+    prefab: {fileID: 5862869021014661295, guid: 7f3283c8e2f62224bb868005fbab1df0, type: 3}
+    spawnTime: 0
+    spawnDistance: 10
+    spawnCount: 3
   - type: 3
     prefab: {fileID: 5862869021014661295, guid: 7ea42490b577a8441bfb2ab778ac387a, type: 3}
     spawnTime: 2
-    spawnDistance: 30
+    spawnDistance: 20
     spawnCount: 2
   dayLength: 10
   nightLength: 10

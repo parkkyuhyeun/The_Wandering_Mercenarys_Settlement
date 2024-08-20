@@ -29,6 +29,13 @@ public static class ScriptableObjectResetter
             EditorUtility.SetDirty(obj); // 변경사항이 있다고 에디터에 알림
         }
 
+        EnemySO[] objects2 = Resources.FindObjectsOfTypeAll<EnemySO>();
+        foreach (var obj in objects2)
+        {
+            obj.ResetData(); // ResetData()는 ScriptableObject에서 초기화 작업을 수행하는 함수
+            EditorUtility.SetDirty(obj); // 변경사항이 있다고 에디터에 알림
+        }
+
         // 필요한 경우, 변경된 오브젝트들을 저장
         AssetDatabase.SaveAssets();
     }

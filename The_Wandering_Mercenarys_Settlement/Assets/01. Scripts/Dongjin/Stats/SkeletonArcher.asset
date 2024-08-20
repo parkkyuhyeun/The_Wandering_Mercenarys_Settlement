@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: SkeletonArcher
   m_EditorClassIdentifier: 
   monsterType: 3
-  MaxHP: 33.489788
-  Damage: 3.3489795
-  AttackCooldown: 3.7633538
-  AttackDistance: 5.644738
+  MaxHP: 100
+  Damage: 10
+  AttackCooldown: 2
+  AttackDistance: 10
   GiveExp: 10
   Series: 1
-  bulletLifeTime: 0.43895754
-  bulletSpeed: 3.3489795
+  bulletLifeTime: 5
+  bulletSpeed: 5
   weaponType: 0
-  hpIncreaseRate: 1.2
-  damageIncreaseRate: 1.2
-  cooldownDecreaseRate: 0.9
-  rangeIncreaseRate: 1.1
-  bulletLifeIncreaseRate: 1.5
-  bulletSpeedIncreaseRate: 1.2
+  hpIncreaseRate: 10
+  damageIncreaseRate: 10
+  cooldownDecreaseRate: 10
+  rangeIncreaseRate: 5
+  bulletLifeIncreaseRate: 10
+  bulletSpeedIncreaseRate: 10
