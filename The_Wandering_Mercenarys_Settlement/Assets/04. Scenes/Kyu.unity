@@ -5423,7 +5423,6 @@ MonoBehaviour:
   merchantAndPlayerDistance: 1
   weapon: {fileID: 1787352062}
   playerSO: {fileID: 11400000, guid: 5cfb29e4cd150b845b1a50e11ef49f17, type: 2}
-  damageCooltime: 0
   playerCollider: {fileID: 0}
   curHP: 0
 --- !u!212 &410695756
@@ -21697,8 +21696,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 410695757}
   - {fileID: 1372939152}
+  - {fileID: 410695757}
   - {fileID: 1140010143}
   - {fileID: 2081687270}
   - {fileID: 440895450}
