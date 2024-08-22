@@ -17,4 +17,5 @@ public class GameScenes
     public static Weapon globalWeapon;
     public static PlayerController globalPlayerController;
     public static LevelManager globalLevelManager;
+    public static Bullet globalBullet;
 }

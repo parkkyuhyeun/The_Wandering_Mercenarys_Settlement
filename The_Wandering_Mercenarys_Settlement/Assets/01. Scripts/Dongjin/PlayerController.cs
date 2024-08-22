@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject weapon;
 
     [Header("스탯")]
-    [SerializeField] private PlayerSO playerSO;
+    [SerializeField] public PlayerSO playerSO;
 
     private Rigidbody2D rigid;
     public Collider2D playerCollider;
@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         weapon = GameObject.FindGameObjectWithTag("Weapon");
         curHP = playerSO.MaxHP;
+        GameScenes.globalLevelManager.LevelUp(ref playerSO);
     }
 
     private void Update()
@@ -58,19 +59,19 @@ public class PlayerController : MonoBehaviour
         if(playerSO.curEXP > playerSO.nextEXP)
         {
             GameScenes.globalLevelManager.LevelUp(ref playerSO);
-
+            PlayerStatSetting();
         }
     }
 
-    private void PlayerStatSetting()
+    public void PlayerStatSetting()
     {
-        // 스탯을 레벨에 맞게 조정
-        playerSO.MaxHP *= Mathf.Pow(playerSO.hpIncreaseRate, playerSO.Level);
-        playerSO.Damage *= Mathf.Pow(playerSO.damageIncreaseRate, playerSO.Level);
-        playerSO.AttackCooldown *= Mathf.Pow(playerSO.cooldownDecreaseRate, playerSO.Level);
+        // 스탯을 레벨에 맞게 조정 (퍼센트 형식의 증가율 사용)
+        playerSO.MaxHP = (int)(playerSO.MaxHP * (1 + (playerSO.hpIncreaseRate / 100f) * playerSO.Level));
+        playerSO.Damage = (int)(playerSO.Damage * (1 + (playerSO.damageIncreaseRate / 100f) * playerSO.Level));
+        playerSO.AttackCooldown *= 1 - (playerSO.cooldownDecreaseRate / 100f) * playerSO.Level;
 
         // 현재 체력을 최대 체력으로 갱신
-        curHP = playerSO.MaxHP;
+        curHP = (int)playerSO.MaxHP;
     }
 
     private IEnumerator FinishCoolDown()

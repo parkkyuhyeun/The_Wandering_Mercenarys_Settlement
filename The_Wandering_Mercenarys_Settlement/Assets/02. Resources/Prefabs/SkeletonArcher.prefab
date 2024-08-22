@@ -131,9 +131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d442bb6b6e7b64189dba45cebbb422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySO: {fileID: 11400000, guid: 25d0bb2dfeb5fac479d243825a0ce7da, type: 2}
+  enemySO: {fileID: 11400000, guid: 0d19e26750b713449b1e051e7bc19b77, type: 2}
   moveSpeed: 0.6
   waitTime: 3
+  curLevel: 1
 --- !u!58 &9077770776159949387
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -163,7 +164,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

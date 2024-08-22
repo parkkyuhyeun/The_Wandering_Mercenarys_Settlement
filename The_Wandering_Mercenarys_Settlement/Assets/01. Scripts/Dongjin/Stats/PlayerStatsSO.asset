@@ -17,7 +17,7 @@ MonoBehaviour:
   Level: 0
   curEXP: 0
   nextEXP: 0
-  AttackCooldown: 1
-  damageIncreaseRate: 1.2
-  hpIncreaseRate: 1.5
-  cooldownDecreaseRate: 0.9
+  AttackCooldown: 0.5
+  damageIncreaseRate: 10
+  hpIncreaseRate: 20
+  cooldownDecreaseRate: 1

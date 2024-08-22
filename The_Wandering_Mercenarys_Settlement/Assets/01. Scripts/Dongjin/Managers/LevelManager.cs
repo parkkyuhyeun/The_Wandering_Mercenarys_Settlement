@@ -23,10 +23,12 @@ public class LevelManager : MonoBehaviour
         resetMultiplier = (so.Level - 1) / resetInterval;
         modValue = (so.Level - 1) % resetInterval;
         so.nextEXP = (int)(baseExp * Mathf.Pow(1 + growthMultiplier, resetMultiplier * resetInterval + modValue));
+        Debug.Log("레벨업!");
     }
 
     public float GetEXP(int enemyLevel, float exp)
     {
-        return enemyLevel * baseExp + exp;
+        Debug.Log($"경험치를 {enemyLevel * (int)GameScenes.globalPlayerController.playerSO.nextEXP / 100 + exp} 만큼 획득했다!");
+        return enemyLevel * (int)GameScenes.globalPlayerController.playerSO.nextEXP / 100 + exp;
     }
 }

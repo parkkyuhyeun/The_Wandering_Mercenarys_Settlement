@@ -135,7 +135,10 @@ public class PoolManager : MonoBehaviour
 
     private Vector3 RandomPosition(Vector3 playerPosition, float distance)
     {
-        Vector3 randomDirection = Random.insideUnitSphere * distance;
+        var rCircleX = Random.insideUnitCircle.x * distance;
+        var rCircleY = Random.insideUnitCircle.y * distance;
+   
+        Vector3 randomDirection = new Vector3(Mathf.Clamp(rCircleX, distance * 0.7f, distance), Mathf.Clamp(rCircleY, distance * 0.7f, distance), 0);
         randomDirection += playerPosition;
         return new Vector3(randomDirection.x, randomDirection.y, 0);
     }
