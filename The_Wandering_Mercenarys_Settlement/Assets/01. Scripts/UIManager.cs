@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject inventory;
     [SerializeField] GameObject player;
     [SerializeField] Slider hpSlider;
+    [SerializeField] Slider expSlider;
 
     Timer _timer;
     InventoryUI _inven;
@@ -22,6 +23,7 @@ public class UIManager : MonoBehaviour
     public int cc;
     public int dc;
     public int currentCoin = 1000;
+    public float maxEXP;
     public float maxHP;
 
     private bool day = true;
@@ -45,6 +47,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         maxHP = _playerCon.curHP;
+        maxEXP = _playerCon.playerSO.nextEXP;
         hpSlider.maxValue = maxHP;
     }
 
@@ -63,6 +66,8 @@ public class UIManager : MonoBehaviour
 
         ChangeCurrentCoinTxt();
         UpdateHP();
+        UpdateExp();
+        UpdateLevel();
     }
 
     public void ChangeCurrentCoinTxt()
@@ -72,7 +77,19 @@ public class UIManager : MonoBehaviour
 
     public void UpdateHP()
     {
+        maxEXP = _playerCon.playerSO.nextEXP;
         currentHPTxt.text = $"{hpSlider.value}/{maxHP}";
         hpSlider.value = _playerCon.curHP;
+    }
+
+    public void UpdateExp()
+    {
+        currentExpTxt.text = $"{expSlider.value}/{maxEXP}";
+        expSlider.value = _playerCon.playerSO.curEXP;
+    }
+
+    public void UpdateLevel()
+    {
+        currentLevelTxt.text = $"Level. {_playerCon.playerSO.Level}";
     }
 }
