@@ -8,8 +8,10 @@ public class TestKey : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            GameScenes.globalLevelManager.LevelUp(ref GameScenes.globalPlayerController.playerSO);
-            GameScenes.globalPlayerController.PlayerStatSetting();
+            GameScenes.globalPlayerController.playerSO.curEXP = GameScenes.globalPlayerController.playerSO.nextEXP;
+            GameScenes.globalPlayerController.LevelUpManage();
+
+            Debug.Log("강제 레벨업");
         }
     }
 }

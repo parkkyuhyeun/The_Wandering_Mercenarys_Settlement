@@ -56,14 +56,21 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(playerSO.curEXP > playerSO.nextEXP)
+        LevelUpManage();
+    }
+
+    public void LevelUpManage()
+    {
+        if (playerSO.curEXP > playerSO.nextEXP)
         {
+            //exp 초기화 작업
+            playerSO.curEXP = playerSO.curEXP - playerSO.nextEXP;
             GameScenes.globalLevelManager.LevelUp(ref playerSO);
             PlayerStatSetting();
         }
     }
 
-    public void PlayerStatSetting()
+    private void PlayerStatSetting()
     {
         // 스탯을 레벨에 맞게 조정 (퍼센트 형식의 증가율 사용)
         playerSO.MaxHP = (int)(playerSO.MaxHP * (1 + (playerSO.hpIncreaseRate / 100f) * playerSO.Level));
