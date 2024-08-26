@@ -22,7 +22,8 @@ public class LevelManager : MonoBehaviour
         so.Level++;
         resetMultiplier = (so.Level - 1) / resetInterval;
         modValue = (so.Level - 1) % resetInterval;
-        so.nextEXP = (int)(baseExp * Mathf.Pow(1 + growthMultiplier, resetMultiplier * resetInterval + modValue));
+        float getExp = (int)(baseExp * Mathf.Pow(1 + growthMultiplier, resetMultiplier * resetInterval + modValue));
+        so.nextEXP = getExp;
         Debug.Log("·¹º§¾÷!");
     }
 
