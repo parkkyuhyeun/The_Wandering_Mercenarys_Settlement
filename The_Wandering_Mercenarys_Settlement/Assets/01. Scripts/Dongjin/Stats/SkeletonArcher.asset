@@ -18,6 +18,7 @@ MonoBehaviour:
   AttackCooldown: 2
   AttackDistance: 10
   GiveExp: 10
+  GiveCoin: 0
   Series: 1
   bulletLifeTime: 5
   bulletSpeed: 5

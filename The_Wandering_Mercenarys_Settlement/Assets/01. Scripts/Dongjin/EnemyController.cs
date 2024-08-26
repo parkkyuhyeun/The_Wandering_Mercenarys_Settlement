@@ -70,6 +70,8 @@ public class EnemyController : MonoBehaviour
             //플레이어 경험치 획득
             GameScenes.globalPlayerController.SetEXP(GameScenes.globalLevelManager.GetEXP(curLevel, enemySO.GiveExp));
             Debug.Log("몬스터: 으아앜");
+            //플레이어 코인 획득
+            GameScenes.globalCoinManager.coin += enemySO.GiveCoin * curLevel;
         }
     }
 

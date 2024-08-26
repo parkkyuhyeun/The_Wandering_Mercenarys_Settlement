@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
     public void LevelUpManage()
     {
-        if (playerSO.curEXP > playerSO.nextEXP)
+        if (playerSO.curEXP >= playerSO.nextEXP)
         {
             //exp 초기화 작업
             playerSO.curEXP = playerSO.curEXP - playerSO.nextEXP;
