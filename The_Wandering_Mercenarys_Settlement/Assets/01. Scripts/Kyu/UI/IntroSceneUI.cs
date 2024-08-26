@@ -16,7 +16,7 @@ public class IntroSceneUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI PW_LvlTxt;
     [SerializeField] TextMeshProUGUI R_PointTxt;
 
-    SavePInf saveData;
+    SavePInf saveData = new SavePInf();
 
     public int HLevel;
     public int PLevel;
@@ -61,21 +61,27 @@ public class IntroSceneUI : MonoBehaviour
 
     public void HLevelUp()
     {
-        HLevel++;
-        Hp_Slider.value = HLevel;
-        saveData.R_Point -= HLostP;
-        saveData.H_UpLvl = HLevel;
-        HLostP++;
-        JsonManager<SavePInf>.SaveJson(saveData, "PlayerInformation");
+        if (saveData.R_Point >= HLostP)
+        {
+            HLevel++;
+            Hp_Slider.value = HLevel;
+            saveData.R_Point -= HLostP;
+            saveData.H_UpLvl = HLevel;
+            HLostP++;
+            JsonManager<SavePInf>.SaveJson(saveData, "PlayerInformation");
+        }
     }
 
     public void PLevelUp()
     {
-        PLevel++;
-        Pw_Slider.value = PLevel;
-        saveData.R_Point -= PLostP;
-        saveData.P_UpLvl = PLevel;
-        PLostP++;
-        JsonManager<SavePInf>.SaveJson(saveData, "PlayerInformation");
+        if (saveData.R_Point >= PLostP)
+        {
+            PLevel++;
+            Pw_Slider.value = PLevel;
+            saveData.R_Point -= PLostP;
+            saveData.P_UpLvl = PLevel;
+            PLostP++;
+            JsonManager<SavePInf>.SaveJson(saveData, "PlayerInformation");
+        }
     }
 }
