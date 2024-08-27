@@ -28,7 +28,8 @@ public class ShopUI : MonoBehaviour
     }
     private void Start()
     {
-        currentCoinTxt.text = $"{ui.currentCoin} Coin";
+        var coinPack = GameScenes.globalCoinManager.coin;
+        currentCoinTxt.text = $"{coinPack.coinContain[coinPack.levelCnt]} Coin";
         isSoldOuts = new int[informationTabs.Length];
         haveArrays = new int[informationTabs.Length];
 
@@ -62,12 +63,13 @@ public class ShopUI : MonoBehaviour
         currentItemNum = num;
     }
 
-    public void Buy(int cost)
+    public void Buy(int cost,int costLevel)
     {
-        if(ui.currentCoin >= cost && isSoldOuts[currentItemNum] != 1)
+        var coinPack = GameScenes.globalCoinManager.coin;
+        if (coinPack.coinContain[coinPack.levelCnt] >= cost && isSoldOuts[currentItemNum] != 1)
         {
-            currentCoinTxt.text = $"{ui.currentCoin - cost} Coin";
-            ui.currentCoin -= cost;
+            currentCoinTxt.text = $"{coinPack.coinContain[costLevel] - cost}{coinPack.coinLevel[costLevel]} Coin";
+            coinPack.coinContain[costLevel] -= cost;
             haveArrays[currentItemNum]--;
 
             if (haveArrays[currentItemNum] == 0)

@@ -19,4 +19,5 @@ public class GameScenes
     public static LevelManager globalLevelManager;
     public static Bullet globalBullet;
     public static CoinManager globalCoinManager;
+    public static UIManager globalUIManager;
 }

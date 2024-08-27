@@ -8,7 +8,6 @@ using UnityEngine.EventSystems;
 public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] GameObject inventory;
-    [SerializeField] GameObject uiManager;
     InventoryUI _inUi;
     UIManager _ui;
 
@@ -23,7 +22,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     private void Awake()
     {
         _inUi = inventory.GetComponent<InventoryUI>();
-        _ui = uiManager.GetComponent<UIManager>();
+        _ui = GameScenes.globalUIManager.GetComponent<UIManager>();
         itemCode = gameObject.name[5] - '0';
     }
 
