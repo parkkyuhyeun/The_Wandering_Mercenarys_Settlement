@@ -81,7 +81,7 @@ public class EnemyController : MonoBehaviour
             //플레이어 코인 획득
 
             GameScenes.globalCoinManager.coin.coinContain[enemySO.CoinLevel] += enemySO.GiveCoin * Mathf.Max(1, curLevel);
-            GameScenes.globalCoinManager.UpdateCoin();
+            GameScenes.globalCoinManager.UpdateCoin(enemySO.CoinLevel);
             Debug.Log($"코인을 {enemySO.GiveCoin * Mathf.Max(1, curLevel)} 만큼 획득했다 \n현재코인: {GameScenes.globalCoinManager.coin}");
         }
     }

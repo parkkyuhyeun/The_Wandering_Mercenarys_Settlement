@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8159995574cf2ae429d35245bdfa234d, type: 3}
-  m_Name: SkeletonArcher
+  m_Name: SlimeKingSO
   m_EditorClassIdentifier: 
-  monsterType: 3
-  MaxHP: 100
-  Damage: 10
-  AttackCooldown: 2
-  AttackDistance: 10
-  GiveExp: 10
-  GiveCoin: 1000
+  monsterType: 0
+  MaxHP: 0
+  Damage: 0
+  AttackCooldown: 0
+  AttackDistance: 0
+  GiveExp: 0
+  GiveCoin: 0
   CoinLevel: 0
-  Series: 1
-  bulletLifeTime: 5
-  bulletSpeed: 5
+  Series: 0
+  bulletLifeTime: 0
+  bulletSpeed: 0
   weaponType: 0
-  hpIncreaseRate: 10
-  damageIncreaseRate: 10
-  cooldownDecreaseRate: 10
-  rangeIncreaseRate: 5
-  bulletLifeIncreaseRate: 10
-  bulletSpeedIncreaseRate: 10
+  hpIncreaseRate: 0
+  damageIncreaseRate: 0
+  cooldownDecreaseRate: 0
+  rangeIncreaseRate: 0
+  bulletLifeIncreaseRate: 0
+  bulletSpeedIncreaseRate: 0

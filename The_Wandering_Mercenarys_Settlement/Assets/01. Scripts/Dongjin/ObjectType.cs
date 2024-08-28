@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectType : MonoBehaviour
+public class ObjectType
 {
     public enum MonsterType
     {
@@ -12,7 +12,7 @@ public class ObjectType : MonoBehaviour
 
     public enum WeaponType
     {
-        enemyBullet,
+        enemyBullet, sword, staff, bow, axe, dagger
     }
 
     public class Monster

@@ -109,6 +109,20 @@ public class PoolManager : MonoBehaviour
         return weaponToSpawn;
     }
 
+    public GameObject SpawnWeapon(ObjectType.WeaponType type, GameObject parent)
+    {
+        if (!weaponPoolDictionary.ContainsKey(type))
+        {
+            Debug.LogError("No pool with such type!");
+            return null;
+        }
+
+        weaponToSpawn = weaponPoolDictionary[type].Count > 0 ? weaponPoolDictionary[type].Dequeue() : Instantiate(GetPrefabByType(type), parent.transform);
+        weaponToSpawn.SetActive(false);
+
+        return weaponToSpawn;
+    }
+
     private GameObject GetPrefabByType(ObjectType.MonsterType type)
     {
         foreach (var pool in monsterPools)

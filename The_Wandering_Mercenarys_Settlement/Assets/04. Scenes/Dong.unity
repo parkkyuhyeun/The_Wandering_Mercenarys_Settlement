@@ -2067,6 +2067,21 @@ MonoBehaviour:
   - weaponType: 0
     prefab: {fileID: 5456236713716450787, guid: 9f7285dc5b4b0d042bec52a12c2ff785, type: 3}
     initialSize: 20
+  - weaponType: 1
+    prefab: {fileID: 6754158673362663143, guid: 1357dfe998f3c35408f8a498e9530c7a, type: 3}
+    initialSize: 0
+  - weaponType: 2
+    prefab: {fileID: 8684200354394676896, guid: 595ff833fddccc343a560f5a782c0d62, type: 3}
+    initialSize: 0
+  - weaponType: 3
+    prefab: {fileID: 8265294020106594955, guid: a44b392d2eee73b40b9580bcfead0ac9, type: 3}
+    initialSize: 0
+  - weaponType: 4
+    prefab: {fileID: 5558207084794554219, guid: 615b470abc797f04aa6ea8677f95db63, type: 3}
+    initialSize: 0
+  - weaponType: 5
+    prefab: {fileID: 2752959901795840478, guid: d587190d57946504492f0de1b7c91dd5, type: 3}
+    initialSize: 0
   monsterParentTransform: {fileID: 1165932100}
   weaponParentTransform: {fileID: 2027514185}
 --- !u!1 &268148136
@@ -3467,6 +3482,27 @@ MonoBehaviour:
   - {fileID: 2054783988}
   - {fileID: 1123724892}
   - {fileID: 299078444}
+  buttons:
+  - button: {fileID: 1910596124}
+    cost: 10
+    costLevel: 0
+    type: 1
+  - button: {fileID: 251976385}
+    cost: 0
+    costLevel: 0
+    type: 4
+  - button: {fileID: 2066352976}
+    cost: 0
+    costLevel: 0
+    type: 5
+  - button: {fileID: 1977355006}
+    cost: 0
+    costLevel: 0
+    type: 3
+  - button: {fileID: 1886531421}
+    cost: 0
+    costLevel: 0
+    type: 2
   currentCoinTxt: {fileID: 1879825076}
   uimanager: {fileID: 728099011}
 --- !u!114 &381087410
@@ -15552,7 +15588,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveSetting:
   - waveNumber: 0
-    monsters: 02000000
+    monsters: 0200000001000000
+  - waveNumber: 1
+    monsters: 0200000007000000
+  - waveNumber: 2
+    monsters: 030000000400000004000000
+  - waveNumber: 3
+    monsters: 040000000400000008000000
+  - waveNumber: 4
+    monsters: 05000000060000000200000004000000
+  - waveNumber: 5
+    monsters: 09000000060000000600000006000000
+  - waveNumber: 6
+    monsters: 0a000000
 --- !u!1 &1595105214
 GameObject:
   m_ObjectHideFlags: 0
@@ -16001,7 +16049,9 @@ MonoBehaviour:
   speedMultiplier: 1
   merchantRange: {fileID: 1632910666}
   merchantAndPlayerDistance: 1
-  weapon: {fileID: 2001636080}
+  weapons:
+  - weaponType: 1
+    weaponPrefab: {fileID: 0}
   playerSO: {fileID: 11400000, guid: 5cfb29e4cd150b845b1a50e11ef49f17, type: 2}
   playerCollider: {fileID: 0}
   curHP: 0
@@ -16069,8 +16119,7 @@ Transform:
   m_LocalPosition: {x: -4.6, y: 0.025573095, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2001636084}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1614435559
@@ -19900,141 +19949,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992862200}
   m_CullTransparentMesh: 1
---- !u!1 &2001636080
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2001636084}
-  - component: {fileID: 2001636083}
-  - component: {fileID: 2001636082}
-  - component: {fileID: 2001636081}
-  m_Layer: 0
-  m_Name: Weapon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!58 &2001636081
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001636080}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.89, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.94419193
---- !u!114 &2001636082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001636080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3904836ceae81624dbfe6bfe5d43f445, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isContact: 0
-  EnemyObj: {fileID: 0}
---- !u!212 &2001636083
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001636080}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 991ecc1876e39d242a4eaf96ef7a5641, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &2001636084
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001636080}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.813, y: -0.266, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1605215794}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2006257426
 GameObject:
   m_ObjectHideFlags: 0
@@ -21298,7 +21212,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinText: {fileID: 872117544}
-  coin: 0
+  coin:
+    coinContain:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    coinLevel:
+    - 
+    - k
+    - m
+    - b
+    - t
+    levelCnt: 0
 --- !u!1 &2082193367
 GameObject:
   m_ObjectHideFlags: 0
