@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public ObjectType.WeaponType Type;
     public bool isContact = false;
     public GameObject EnemyObj;
 

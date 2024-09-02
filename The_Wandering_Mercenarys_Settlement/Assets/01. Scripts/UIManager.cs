@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -33,15 +34,6 @@ public class UIManager : MonoBehaviour
         _timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         _inven = inventory.GetComponent<InventoryUI>();
         _playerCon = player.GetComponent<PlayerController>();
-
-        for (int i = 0; i < 10; i++)
-        {
-            _inven.currentItem.Add(0);
-        }
-        for (int i = 0; i < 10; i++)
-        {
-            _inven.currentPotion.Add(0);
-        }
     }
 
     private void Start()

@@ -173,12 +173,14 @@ public class PlayerController : MonoBehaviour
     public void ShowWeapon(ObjectType.WeaponType type)
     {
         GameObject weaponObj = weaponDic[type];
+        if (weaponObj == null) return;
         weaponObj.SetActive(true);
     }
 
     public void DisableWeapon(ObjectType.WeaponType type)
     {
         GameObject weaponObj = weaponDic[type];
+        if (weaponObj == null) return;
         weaponObj.SetActive(false);
     }
 }

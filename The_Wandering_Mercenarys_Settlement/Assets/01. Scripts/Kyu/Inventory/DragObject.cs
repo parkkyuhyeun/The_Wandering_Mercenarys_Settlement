@@ -14,16 +14,16 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     public static Vector2 DefaultPos;
     public static Vector2 setPos;
 
-    public int DefaultValue = 0;
-    public int CurrentValue;
-
-    public int itemCode;
+    private InventoryUI.Item myItem;
 
     private void Awake()
     {
         _inUi = inventory.GetComponent<InventoryUI>();
         _ui = GameScenes.globalUIManager.GetComponent<UIManager>();
-        itemCode = gameObject.name[5] - '0';
+    }
+
+    private void Update()
+    {
     }
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
@@ -47,7 +47,6 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
         else
         {
             this.transform.position = setPos;
-            DefaultValue = CurrentValue;
         }
     }
 
@@ -59,50 +58,47 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerEventData, results);
 
-        for (int i = 0; i < results.Count; i++)
+       foreach (RaycastResult result in results)
         {
             if (gameObject.CompareTag("Item"))
             {
-                if (results[i].gameObject.CompareTag("ItemEquip") || results[i].gameObject.CompareTag("AnotherItem"))
+                if (result.gameObject.CompareTag("ItemEquip") || result.gameObject.CompareTag("AnotherItem"))
                 {
-                    CurrentValue = results[i].gameObject.name[5] - '0';
-                    if (_inUi.currentItem[CurrentValue] == 0)
+                    setPos = result.gameObject.transform.position;
+                    foreach(var item in _inUi.currentItem)
                     {
-                        setPos = results[i].gameObject.transform.position;
-                        _ui.dc = _inUi.currentItem[DefaultValue];
-                        _inUi.currentItem[CurrentValue] = itemCode;
-                        _ui.cc = _inUi.currentItem[CurrentValue];
-                        _inUi.currentItem[DefaultValue] = 0;
-                        return true;
+                        if(item.weaponPrefab.GetComponent<SpriteRenderer>().GetInstanceID() == result.gameObject.GetComponent<SpriteRenderer>().GetInstanceID())
+                        {
+                            gameObject.GetComponentInParent<Transform>().GetComponent<QuickSlotUI>().ItemOnQuickslot(item.weaponType);
+                            myItem = item;
+                            break;
+                        }
                     }
-                    else
-                    {
-                        return false;
-                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
             }
             else if (gameObject.CompareTag("Potion"))
             {
-                if (results[i].gameObject.CompareTag("PotionEquip") || results[i].gameObject.CompareTag("AnotherPotion"))
+                if (result.gameObject.CompareTag("PotionEquip") || result.gameObject.CompareTag("AnotherPotion"))
                 {
-                    CurrentValue = results[i].gameObject.name[5] - '0';
-                    if (_inUi.currentPotion[CurrentValue] == 0)
-                    {
-                        setPos = results[i].gameObject.transform.position;
-                        _ui.dc = _inUi.currentPotion[DefaultValue];
-                        _inUi.currentPotion[CurrentValue] = itemCode;
-                        _ui.cc = _inUi.currentPotion[CurrentValue];
-                        _inUi.currentPotion[DefaultValue] = 0;
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    setPos = result.gameObject.transform.position;
+                    
+                    //gameObject.GetComponentInParent<Transform>().GetComponent<QuickSlotUI>().ItemOnQuickslot();
+                    
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
             }
         }
 
         return false;
     }
+
 }

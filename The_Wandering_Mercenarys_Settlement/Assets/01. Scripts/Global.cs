@@ -20,4 +20,5 @@ public class GameScenes
     public static Bullet globalBullet;
     public static CoinManager globalCoinManager;
     public static UIManager globalUIManager;
+    public static Potion globalPotion;
 }

@@ -12,7 +12,12 @@ public class ObjectType
 
     public enum WeaponType
     {
-        enemyBullet, sword, staff, bow, axe, dagger
+        none, enemyBullet, sword, staff, bow, axe, dagger
+    }
+
+    public enum PotionType
+    {
+        none, heal, damageBoost, SpeedBoost
     }
 
     public class Monster
