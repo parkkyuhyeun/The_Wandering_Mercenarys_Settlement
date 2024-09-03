@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -22,7 +23,6 @@ public class UIManager : MonoBehaviour
 
     public int cc;
     public int dc;
-    public int currentCoin = 1000;
     public float maxEXP;
     public float maxHP;
 
@@ -30,18 +30,10 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        GameScenes.globalUIManager = this;
         _timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         _inven = inventory.GetComponent<InventoryUI>();
         _playerCon = player.GetComponent<PlayerController>();
-
-        for (int i = 0; i < 10; i++)
-        {
-            _inven.currentItem.Add(0);
-        }
-        for (int i = 0; i < 10; i++)
-        {
-            _inven.currentPotion.Add(0);
-        }
     }
 
     private void Start()
@@ -64,15 +56,9 @@ public class UIManager : MonoBehaviour
             day = true;
         }
 
-        ChangeCurrentCoinTxt();
         UpdateHP();
         UpdateExp();
         UpdateLevel();
-    }
-
-    public void ChangeCurrentCoinTxt()
-    {
-        currentCoinTxt.text = $"{currentCoin} Coin";
     }
 
     public void UpdateHP()

@@ -4,21 +4,42 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
+    [System.Serializable]
+    public class Item : PlayerController.PlayerWeapon
+    {
+        public int id;
+
+        public Item(int id, ObjectType.WeaponType weaponType, GameObject weaponPrefab) : base(weaponType, weaponPrefab)
+        {
+            this.id = id;
+            this.weaponType = weaponType;
+            this.weaponPrefab = weaponPrefab;
+        }
+    }
+
+    [System.Serializable]
+    public class Potion
+    {
+        public int id;
+        public ObjectType.PotionType potionType;
+
+        public Potion(int id, ObjectType.PotionType potionType)
+        {
+            this.id = id;
+            this.potionType = potionType;
+        }
+    }
+
     [SerializeField] GameObject inventoryUI;
 
-    public List<int> currentItem = new List<int>();
-    public List<int> currentPotion = new List<int>();
+    public List<GameObject> itemPrefabs = new List<GameObject>();
+    public List<GameObject> potionPrefabs = new List<GameObject>();
+    public List<Item> currentItem = new List<Item>();
+    public List<Potion> currentPotion = new List<Potion>();
 
     private void Awake()
     {
-        for(int i = 0; i < 10; i++)
-        {
-            currentItem.Add(0);
-        }
-        for(int i = 0; i < 10; i++)
-        {
-            currentPotion.Add(0);
-        }
+
     }
 
     public void OpenUI()
@@ -30,4 +51,6 @@ public class InventoryUI : MonoBehaviour
     {
         inventoryUI.SetActive(false);
     }
+
+    
 }

@@ -14,6 +14,9 @@ public class EnemySO : ScriptableObject
     public float AttackCooldown;
     public float AttackDistance;
     public float GiveExp;
+    [Header("코인관련(코인 레벨은 0~4까지)")]
+    public int GiveCoin;
+    public int CoinLevel;
     [Header("0: 근접, 1: 원거리, 2: 둘다")]
     [Range(0, 1)] public int Series;
 

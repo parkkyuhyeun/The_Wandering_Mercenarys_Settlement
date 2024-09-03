@@ -3,16 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectType : MonoBehaviour
+public class ObjectType
 {
     public enum MonsterType
     {
-        empty, Goblin, Slime, SkeletonArcher, GoblinKing, SlimeKing, SkeletonKing, RedDragon, 
+        empty, Goblin, GoblinGroup, Slime, SlimeGroup, SkeletonArcher, SkeletonArcherGroup, GoblinKing, SlimeKing, SkeletonKing, RedDragon, 
     }
 
     public enum WeaponType
     {
-        enemyBullet,
+        none, enemyBullet, sword, staff, bow, axe, dagger
+    }
+
+    public enum PotionType
+    {
+        none, heal, damageBoost, SpeedBoost
     }
 
     public class Monster

@@ -10,21 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8159995574cf2ae429d35245bdfa234d, type: 3}
-  m_Name: GoblinStatsSO
+  m_Name: SlimeSO
   m_EditorClassIdentifier: 
-  monsterType: 1
-  MaxHP: 100
-  Damage: 10
-  AttackCooldown: 1
-  AttackDistance: 0.8
-  GiveExp: 5
+  monsterType: 0
+  MaxHP: 0
+  Damage: 0
+  AttackCooldown: 0
+  AttackDistance: 0
+  GiveExp: 0
+  GiveCoin: 0
+  CoinLevel: 0
   Series: 0
   bulletLifeTime: 0
   bulletSpeed: 0
   weaponType: 0
-  hpIncreaseRate: 1.3
-  damageIncreaseRate: 1.3
+  hpIncreaseRate: 0
+  damageIncreaseRate: 0
   cooldownDecreaseRate: 0
-  rangeIncreaseRate: 1
+  rangeIncreaseRate: 0
   bulletLifeIncreaseRate: 0
   bulletSpeedIncreaseRate: 0

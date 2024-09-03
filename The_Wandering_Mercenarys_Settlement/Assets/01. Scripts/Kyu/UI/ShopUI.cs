@@ -2,18 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopUI : MonoBehaviour
 {
+    [System.Serializable]
+    public class BuyButton
+    {
+        public Button button;
+        public int cost;
+        public int costLevel;
+        public ObjectType.WeaponType type;
+    }
+
+
     [SerializeField] GameObject shopUI;
     [SerializeField] GameObject itemTab;
     [SerializeField] GameObject potionTab;
     [SerializeField] GameObject[] informationTabs;
     [SerializeField] GameObject[] soldOutPanel;
     [SerializeField] GameObject[] gettingItem;
+    [SerializeField] List<BuyButton> buttons; // 버튼 컴포넌트를 가져옴
 
     [SerializeField] TextMeshProUGUI currentCoinTxt;
     [SerializeField] GameObject uimanager;
+
+    
 
     UIManager ui;
 
@@ -25,10 +39,15 @@ public class ShopUI : MonoBehaviour
     private void Awake()
     {
         ui = uimanager.GetComponent<UIManager>();
+        foreach(var btn in buttons)
+        {
+            btn.button.onClick.AddListener(() => Buy(btn.cost, btn.costLevel, btn.type));
+        }
     }
     private void Start()
     {
-        currentCoinTxt.text = $"{ui.currentCoin} Coin";
+        var coinPack = GameScenes.globalCoinManager.coin;
+        currentCoinTxt.text = $"{coinPack.coinContain[coinPack.levelCnt]} Coin";
         isSoldOuts = new int[informationTabs.Length];
         haveArrays = new int[informationTabs.Length];
 
@@ -62,14 +81,15 @@ public class ShopUI : MonoBehaviour
         currentItemNum = num;
     }
 
-    public void Buy(int cost)
+    public void Buy(int cost,int costLevel, ObjectType.WeaponType type)
     {
-        if(ui.currentCoin >= cost && isSoldOuts[currentItemNum] != 1)
+        if (GameScenes.globalCoinManager.coin.coinContain[GameScenes.globalCoinManager.coin.levelCnt] >= cost && isSoldOuts[currentItemNum] != 1)
         {
-            currentCoinTxt.text = $"{ui.currentCoin - cost} Coin";
-            ui.currentCoin -= cost;
+            Debug.Log($"{type.ToString()} 구매");
+            currentCoinTxt.text = $"{GameScenes.globalCoinManager.coin.coinContain[costLevel] - cost}{GameScenes.globalCoinManager.coin.coinLevel[costLevel]} Coin";
+            GameScenes.globalCoinManager.coin.coinContain[costLevel] -= cost;
             haveArrays[currentItemNum]--;
-
+            GameScenes.globalPlayerController.SpawnWeapon(type);
             if (haveArrays[currentItemNum] == 0)
             {
                 isSoldOuts[currentItemNum] = 1;

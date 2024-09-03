@@ -5,6 +5,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [System.Serializable]
+    public class PlayerWeapon
+    {
+        public ObjectType.WeaponType weaponType;
+        public GameObject weaponPrefab;
+
+        public PlayerWeapon(ObjectType.WeaponType weaponType, GameObject weaponPrefab)
+        {
+            this.weaponType = weaponType;
+            this.weaponPrefab = weaponPrefab;
+        }
+    }
+
+
     [Header("속도값 조절")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float speedMultiplier;
@@ -14,7 +28,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float merchantAndPlayerDistance;
 
     [Header("무기")]
-    [SerializeField] private GameObject weapon;
+    [SerializeField] public List<PlayerWeapon> weapons;
+    [SerializeField] public Dictionary<ObjectType.WeaponType, GameObject> weaponDic;
 
     [Header("스탯")]
     [SerializeField] public PlayerSO playerSO;
@@ -28,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         GameScenes.globalPlayerController = this;
+        weaponDic = new Dictionary<ObjectType.WeaponType, GameObject>();
         rigid = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
@@ -35,7 +51,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        weapon = GameObject.FindGameObjectWithTag("Weapon");
         curHP = playerSO.MaxHP;
         GameScenes.globalLevelManager.LevelUp(ref playerSO);
     }
@@ -125,7 +140,7 @@ public class PlayerController : MonoBehaviour
         //애니메이션
         
         //닿았으면 데미지 주기
-        if (GameScenes.globalWeapon.isContact)
+        if (GameScenes.globalWeapon != null && GameScenes.globalWeapon.isContact)
         {
             Debug.Log("데미지 빵야");
             GameScenes.globalWeapon.EnemyObj.GetComponent<EnemyController>().TakeDamage(playerSO.Damage);
@@ -147,5 +162,25 @@ public class PlayerController : MonoBehaviour
     public void SetEXP(float exp)
     {
         playerSO.curEXP += exp;
+    }
+
+    public void SpawnWeapon(ObjectType.WeaponType type)
+    {
+        GameObject weaponObj = GameScenes.globalPoolManager.SpawnWeapon(type, gameObject);
+        weaponDic.Add(type, weaponObj);
+    }
+
+    public void ShowWeapon(ObjectType.WeaponType type)
+    {
+        GameObject weaponObj = weaponDic[type];
+        if (weaponObj == null) return;
+        weaponObj.SetActive(true);
+    }
+
+    public void DisableWeapon(ObjectType.WeaponType type)
+    {
+        GameObject weaponObj = weaponDic[type];
+        if (weaponObj == null) return;
+        weaponObj.SetActive(false);
     }
 }

@@ -52,12 +52,20 @@ public class EnemyController : MonoBehaviour
         // 플레이어와 적 사이의 방향을 계산
         Vector2 direction = (player.transform.position - transform.position).normalized;
 
-        // 적의 회전을 플레이어를 향하도록 설정
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        // 적이 플레이어의 위치에 따라 좌우로 뒤집히도록 설정
+        if (direction.x > 0)
+        {
+            // 플레이어가 오른쪽에 있을 때
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            // 플레이어가 왼쪽에 있을 때
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
 
         // 플레이어 방향으로 이동
-        transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+        transform.Translate((direction * moveSpeed) * Time.deltaTime);
     }
 
     public void TakeDamage(float Damage)
@@ -70,6 +78,11 @@ public class EnemyController : MonoBehaviour
             //플레이어 경험치 획득
             GameScenes.globalPlayerController.SetEXP(GameScenes.globalLevelManager.GetEXP(curLevel, enemySO.GiveExp));
             Debug.Log("몬스터: 으아앜");
+            //플레이어 코인 획득
+
+            GameScenes.globalCoinManager.coin.coinContain[enemySO.CoinLevel] += enemySO.GiveCoin * Mathf.Max(1, curLevel);
+            GameScenes.globalCoinManager.UpdateCoin(enemySO.CoinLevel);
+            Debug.Log($"코인을 {enemySO.GiveCoin * Mathf.Max(1, curLevel)} 만큼 획득했다 \n현재코인: {GameScenes.globalCoinManager.coin}");
         }
     }
 
@@ -103,6 +116,7 @@ public class EnemyController : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(WaitASecond());
+        Debug.Log($"적 활성화 후 기브 코인: {enemySO.GiveCoin * curLevel}");
     }
 
     public void AttackPlayer()
