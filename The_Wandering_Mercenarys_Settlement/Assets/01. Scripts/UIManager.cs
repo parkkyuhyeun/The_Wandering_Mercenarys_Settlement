@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -16,6 +17,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] Slider hpSlider;
     [SerializeField] Slider expSlider;
+    [SerializeField] GameObject overUI;
 
     Timer _timer;
     InventoryUI _inven;
@@ -77,5 +79,16 @@ public class UIManager : MonoBehaviour
     public void UpdateLevel()
     {
         currentLevelTxt.text = $"Level. {_playerCon.playerSO.Level}";
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void MainMenu()
+    {
+        overUI.SetActive(true);
+        SceneManager.LoadScene("IntroScene");
     }
 }

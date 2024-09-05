@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -34,11 +35,16 @@ public class PlayerController : MonoBehaviour
     [Header("½ºÅÈ")]
     [SerializeField] public PlayerSO playerSO;
 
+    [Header("UI")]
+    [SerializeField] public GameObject overUI;
+
     private Rigidbody2D rigid;
     public Collider2D playerCollider;
     private bool isFinishCoolDown = true;
     private Animator anim;
     public float curHP;
+
+    SavePInf saveData = new SavePInf();
 
     private void Awake()
     {
@@ -156,6 +162,8 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("ÇÃ·¹ÀÌ¾î »ç¸Á");
             //»ç¸Á Ã³¸®
+            overUI.SetActive(true);
+            saveData.R_Point += (playerSO.Level + (playerSO.Level / 5));
         }
     }
 
