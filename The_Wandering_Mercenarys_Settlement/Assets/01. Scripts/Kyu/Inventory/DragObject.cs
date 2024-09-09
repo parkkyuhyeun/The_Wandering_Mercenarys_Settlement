@@ -4,12 +4,14 @@ using System.ComponentModel;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] GameObject inventory;
     InventoryUI _inUi;
     UIManager _ui;
+    List<QuickSlotUI> _quickSlot;
 
     public static Vector2 DefaultPos;
     public static Vector2 setPos;
@@ -20,6 +22,16 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     {
         _inUi = inventory.GetComponent<InventoryUI>();
         _ui = GameScenes.globalUIManager.GetComponent<UIManager>();
+        _quickSlot = new List<QuickSlotUI>();
+    }
+
+    private void Start()
+    {
+        var objs = GameObject.FindGameObjectsWithTag("QuickSlot");
+        foreach (var obj in objs)
+        {
+            _quickSlot.Add(obj.GetComponent<QuickSlotUI>());
+        }
     }
 
     private void Update()
@@ -57,47 +69,59 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
 
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerEventData, results);
-
-       foreach (RaycastResult result in results)
+        foreach(var res in results)
         {
-            if (gameObject.CompareTag("Item"))
+            Debug.Log($"Å¸°Ù: {res.gameObject.name}\n");
+        }
+        if (gameObject.CompareTag("Item"))
+        {
+            foreach (RaycastResult result in results)
             {
+
+                Debug.Log($"Raycast hit: {result.gameObject.name}, this GameObject: {gameObject.name}");
+
                 if (result.gameObject.CompareTag("ItemEquip") || result.gameObject.CompareTag("AnotherItem"))
                 {
                     setPos = result.gameObject.transform.position;
-                    foreach(var item in _inUi.currentItem)
+                    foreach (var item in _inUi.currentItem)
                     {
-                        if(item.weaponPrefab.GetComponent<SpriteRenderer>().GetInstanceID() == result.gameObject.GetComponent<SpriteRenderer>().GetInstanceID())
+                        if (gameObject.GetComponent<SpriteRenderer>().sprite.name == item.weaponPrefab.GetComponent<SpriteRenderer>().sprite.name)
                         {
-                            gameObject.GetComponentInParent<Transform>().GetComponent<QuickSlotUI>().ItemOnQuickslot(item.weaponType);
-                            myItem = item;
+
+                            if (result.gameObject.name[5] == 7)
+                            {
+                                _quickSlot[0].ItemOnQuickslot(item.weaponType);
+                            }
+                            else if(result.gameObject.name[5] == 8)
+                            {
+                                _quickSlot[1].ItemOnQuickslot(item.weaponType);
+                            }
+                            else
+                            {
+                                _quickSlot[2].ItemOnQuickslot(item.weaponType);
+                            }
+
+
                             break;
                         }
                     }
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
             }
-            else if (gameObject.CompareTag("Potion"))
+        }
+        else if (gameObject.CompareTag("Potion"))
+        {
+            foreach (RaycastResult result in results)
             {
                 if (result.gameObject.CompareTag("PotionEquip") || result.gameObject.CompareTag("AnotherPotion"))
                 {
                     setPos = result.gameObject.transform.position;
-                    
-                    //gameObject.GetComponentInParent<Transform>().GetComponent<QuickSlotUI>().ItemOnQuickslot();
-                    
+                    ObjectType.PotionType curType = gameObject.name[6] == '6' ? ObjectType.PotionType.heal : ObjectType.PotionType.damageBoost;
+                    gameObject.GetComponentInParent<Transform>().GetComponent<QuickSlotUI>().ItemOnQuickslot(curType);
                     return true;
-                }
-                else
-                {
-                    return false;
                 }
             }
         }
-
         return false;
     }
 

@@ -35,7 +35,8 @@ public class Potion : MonoBehaviour
 
     private void Healing()
     {
-        
+        GameScenes.globalPlayerController.curHP += GameScenes.globalPlayerController.playerSO.MaxHP * 0.01f * healValue;
+
     }
 
     private void DamageBoosting()

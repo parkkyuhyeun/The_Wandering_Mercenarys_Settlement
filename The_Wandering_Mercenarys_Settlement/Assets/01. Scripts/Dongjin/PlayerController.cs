@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("¹«±â")]
     [SerializeField] public List<PlayerWeapon> weapons;
-    [SerializeField] public Dictionary<ObjectType.WeaponType, GameObject> weaponDic;
 
     [Header("½ºÅÈ")]
     [SerializeField] public PlayerSO playerSO;
@@ -43,7 +42,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         GameScenes.globalPlayerController = this;
-        weaponDic = new Dictionary<ObjectType.WeaponType, GameObject>();
         rigid = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
@@ -167,20 +165,22 @@ public class PlayerController : MonoBehaviour
     public void SpawnWeapon(ObjectType.WeaponType type)
     {
         GameObject weaponObj = GameScenes.globalPoolManager.SpawnWeapon(type, gameObject);
-        weaponDic.Add(type, weaponObj);
+        weapons.Add(new PlayerWeapon(type, weaponObj));
     }
 
     public void ShowWeapon(ObjectType.WeaponType type)
     {
-        GameObject weaponObj = weaponDic[type];
-        if (weaponObj == null) return;
-        weaponObj.SetActive(true);
+        foreach(var weapon in weapons)
+        {
+            if(weapon.weaponType == type) weapon.weaponPrefab.SetActive(true);
+        }
     }
 
     public void DisableWeapon(ObjectType.WeaponType type)
     {
-        GameObject weaponObj = weaponDic[type];
-        if (weaponObj == null) return;
-        weaponObj.SetActive(false);
+        foreach(var weapon in weapons)
+        {
+            if (weapon.weaponType == type) weapon.weaponPrefab.SetActive(false);
+        }
     }
 }
