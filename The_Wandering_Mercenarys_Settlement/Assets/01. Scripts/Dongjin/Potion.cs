@@ -8,10 +8,14 @@ public class Potion : MonoBehaviour
     [SerializeField] private float healValue;
     [SerializeField] private float strengthValue;
 
-    [SerializeField] private QuickSlotUI quickSlot;
+    [SerializeField] public float healTimer;
+    [SerializeField] public float damageTimer;
 
-    private bool isActiveHeal = false;
-    private bool isActiveDamage = false;
+    [SerializeField] public QuickSlotUI quickSlot;
+
+    public bool isActiveHeal = false;
+    public bool isActiveDamage = false;
+    private float originalDamage;
 
     private void Awake()
     {
@@ -20,28 +24,24 @@ public class Potion : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if(quickSlot.curPotion == ObjectType.PotionType.heal)
-            {
-                Healing();
-            }
-            else if(quickSlot.curPotion == ObjectType.PotionType.damageBoost)
-            {
-                DamageBoosting();
-            }
-        }
+        
     }
 
-    private void Healing()
+    public void Healing()
     {
         GameScenes.globalPlayerController.curHP += GameScenes.globalPlayerController.playerSO.MaxHP * 0.01f * healValue;
 
     }
 
-    private void DamageBoosting()
+    public void DamageBoosting()
     {
-        
+        originalDamage = GameScenes.globalPlayerController.playerSO.Damage;
+        GameScenes.globalPlayerController.playerSO.Damage += 0.01f * strengthValue;
+    }
+
+    public void EndDamageBoosting()
+    {
+        GameScenes.globalPlayerController.PlayerStatSetting(originalDamage);
     }
 
     public void ActiveHeal()

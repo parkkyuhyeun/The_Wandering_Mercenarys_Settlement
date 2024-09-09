@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class QuickSlotUI : MonoBehaviour
 {
-    [SerializeField] List<GameObject> showItemList = new List<GameObject>();
+    [System.Serializable]
+    public class ShowItem
+    {
+        public ObjectType.WeaponType weaponType;
+        public ObjectType.PotionType potionType;
+        public GameObject prefab;
+    }
+
+    [SerializeField] List<ShowItem> showItemList = new List<ShowItem>();
     [SerializeField] GameObject inventory;
+    public int SlotId;
 
     public ObjectType.PotionType curPotion = ObjectType.PotionType.none;
+    public ObjectType.WeaponType curWeapon = ObjectType.WeaponType.none;
 
     InventoryUI _inven;
 
@@ -25,20 +35,26 @@ public class QuickSlotUI : MonoBehaviour
     {
         foreach (var showItem in showItemList)
         {
-            showItem.SetActive(true);
-            if (showItem.GetComponent<SpriteRenderer>().sprite.name == type.ToString())
+            if(showItem.weaponType == type)
             {
+                showItem.prefab.SetActive(true);
+                curWeapon = showItem.weaponType;
                 break;
             }
-            showItem.SetActive(false);
         }
         GameScenes.globalPlayerController.ShowWeapon(type);
     }
 
     public void ItemOnQuickslot(ObjectType.PotionType type)
     {
-        if(type == ObjectType.PotionType.heal) showItemList[0].SetActive(true);
-        else if(type == ObjectType.PotionType.damageBoost) showItemList[1].SetActive(true);
+        foreach(var showItem in showItemList)
+        {
+            if(showItem.potionType == type)
+            {
+                showItem.prefab.SetActive(true);
+                break;
+            }
+        }
         curPotion = type;
     }
 }

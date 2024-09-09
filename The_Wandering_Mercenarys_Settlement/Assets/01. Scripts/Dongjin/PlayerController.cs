@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -38,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private bool isFinishCoolDown = true;
     private Animator anim;
     public float curHP;
+    private QuickSlotUI quickSlotUI;
+    private List<QuickSlotUI> quickSlotUIs = new List<QuickSlotUI>();
 
     private void Awake()
     {
@@ -51,6 +54,11 @@ public class PlayerController : MonoBehaviour
     {
         curHP = playerSO.MaxHP;
         GameScenes.globalLevelManager.LevelUp(ref playerSO);
+        QuickSlotUI[] quicks = GameObject.FindObjectsOfType<QuickSlotUI>();
+        foreach(var q in quicks)
+        {
+            quickSlotUIs.Add(q);
+        }
     }
 
     private void Update()
@@ -83,11 +91,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void PlayerStatSetting()
+    public void PlayerStatSetting()
     {
         // 스탯을 레벨에 맞게 조정 (퍼센트 형식의 증가율 사용)
         playerSO.MaxHP = (int)(playerSO.MaxHP * (1 + (playerSO.hpIncreaseRate / 100f) * playerSO.Level));
         playerSO.Damage = (int)(playerSO.Damage * (1 + (playerSO.damageIncreaseRate / 100f) * playerSO.Level));
+        playerSO.AttackCooldown *= 1 - (playerSO.cooldownDecreaseRate / 100f) * playerSO.Level;
+
+        // 현재 체력을 최대 체력으로 갱신
+        curHP = (int)playerSO.MaxHP;
+    }
+
+    public void PlayerStatSetting(float originalDamage)
+    {
+        // 스탯을 레벨에 맞게 조정 (퍼센트 형식의 증가율 사용)
+        playerSO.MaxHP = (int)(playerSO.MaxHP * (1 + (playerSO.hpIncreaseRate / 100f) * playerSO.Level));
+        playerSO.Damage = (int)(originalDamage * (1 + (playerSO.damageIncreaseRate / 100f) * playerSO.Level));
         playerSO.AttackCooldown *= 1 - (playerSO.cooldownDecreaseRate / 100f) * playerSO.Level;
 
         // 현재 체력을 최대 체력으로 갱신
@@ -181,6 +200,30 @@ public class PlayerController : MonoBehaviour
         foreach(var weapon in weapons)
         {
             if (weapon.weaponType == type) weapon.weaponPrefab.SetActive(false);
+        }
+    }
+
+    internal void SwitchWeapon(int slotId)
+    {
+        foreach(var q in quickSlotUIs)
+        {
+            if(q.SlotId == slotId)
+            {
+                quickSlotUI = q;
+                break;
+            }
+        }
+
+        foreach(var weapon in weapons)
+        {
+            if(weapon.weaponType == quickSlotUI.curWeapon)
+            {
+                weapon.weaponPrefab.SetActive(true);
+            }
+            else
+            {
+                weapon.weaponPrefab.SetActive(false);
+            }
         }
     }
 }
