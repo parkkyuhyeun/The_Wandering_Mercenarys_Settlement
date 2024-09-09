@@ -18,32 +18,18 @@ public class QuickSlotUI : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.name[9] == '1')
-        {
-            if (_inven.currentItem[7].id != 0) showItemList[_inven.currentItem[7].id - 1].SetActive(true);
-            else for (int i = 0; i < showItemList.Count; i++) showItemList[i].SetActive(false);
-        }
-        if (gameObject.name[9] == '2')
-        {
-            if (_inven.currentItem[8].id != 0) showItemList[_inven.currentItem[8].id - 1].SetActive(true);
-            else for (int i = 0; i < showItemList.Count; i++) showItemList[i].SetActive(false);
-        }
-        if (gameObject.name[9] == '3')
-        {
-            if (_inven.currentItem[9].id != 0) showItemList[_inven.currentItem[9].id - 1].SetActive(true);
-            else for (int i = 0; i < showItemList.Count; i++) showItemList[i].SetActive(false);
-        }
-        if (gameObject.name[9] == '4')
-        {
-            if (_inven.currentPotion[9].id != 0) showItemList[_inven.currentPotion[9].id - 1].SetActive(true);
-            else for (int i = 0; i < showItemList.Count; i++) showItemList[i].SetActive(false);
-        }
+        
     }
 
     public void ItemOnQuickslot(ObjectType.WeaponType type)
     {
-        foreach(var showItem in showItemList)
+        foreach (var showItem in showItemList)
         {
+            showItem.SetActive(true);
+            if (showItem.GetComponent<SpriteRenderer>().sprite.name == type.ToString())
+            {
+                break;
+            }
             showItem.SetActive(false);
         }
         GameScenes.globalPlayerController.ShowWeapon(type);
@@ -51,10 +37,8 @@ public class QuickSlotUI : MonoBehaviour
 
     public void ItemOnQuickslot(ObjectType.PotionType type)
     {
-        foreach (var showItem in showItemList)
-        {
-            showItem.SetActive(false);
-        }
+        if(type == ObjectType.PotionType.heal) showItemList[0].SetActive(true);
+        else if(type == ObjectType.PotionType.damageBoost) showItemList[1].SetActive(true);
         curPotion = type;
     }
 }
