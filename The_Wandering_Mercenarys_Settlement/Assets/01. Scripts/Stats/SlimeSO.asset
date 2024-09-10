@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: SlimeSO
   m_EditorClassIdentifier: 
   monsterType: 0
-  MaxHP: 0
-  Damage: 0
-  AttackCooldown: 0
-  AttackDistance: 0
-  GiveExp: 0
-  GiveCoin: 0
+  MaxHP: 150
+  Damage: 30
+  AttackCooldown: 1.5
+  AttackDistance: 1
+  GiveExp: 8
+  GiveCoin: 8
   CoinLevel: 0
   Series: 0
   bulletLifeTime: 0
   bulletSpeed: 0
   weaponType: 0
-  hpIncreaseRate: 0
-  damageIncreaseRate: 0
+  hpIncreaseRate: 30
+  damageIncreaseRate: 2
   cooldownDecreaseRate: 0
   rangeIncreaseRate: 0
   bulletLifeIncreaseRate: 0
