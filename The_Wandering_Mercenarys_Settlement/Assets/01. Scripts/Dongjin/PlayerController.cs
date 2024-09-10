@@ -207,6 +207,7 @@ public class PlayerController : MonoBehaviour
     {
         GameObject weaponObj = GameScenes.globalPoolManager.SpawnWeapon(type, gameObject);
         weapons.Add(new PlayerWeapon(type, weaponObj));
+        GameScenes.globalWeapon.SetType(type);
     }
 
     public void ShowWeapon(ObjectType.WeaponType type)

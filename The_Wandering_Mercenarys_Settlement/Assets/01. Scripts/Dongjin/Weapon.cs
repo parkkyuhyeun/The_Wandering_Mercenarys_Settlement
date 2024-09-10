@@ -29,4 +29,9 @@ public class Weapon : MonoBehaviour
             isContact = false;
         }
     }
+
+    public void SetType(ObjectType.WeaponType type)
+    {
+        this.Type = type;
+    }
 }

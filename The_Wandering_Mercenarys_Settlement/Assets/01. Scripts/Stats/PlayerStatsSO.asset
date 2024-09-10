@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHP: 999
   Damage: 20
-  Level: 5
-  curEXP: 0
-  nextEXP: 20
+  Level: 6
+  curEXP: 5
+  nextEXP: 24
   AttackCooldown: 0
   damageIncreaseRate: 10
   hpIncreaseRate: 10
