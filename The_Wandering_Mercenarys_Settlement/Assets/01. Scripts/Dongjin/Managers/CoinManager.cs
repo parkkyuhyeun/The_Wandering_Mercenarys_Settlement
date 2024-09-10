@@ -18,12 +18,8 @@ public class CoinManager : MonoBehaviour
 
     private void Awake()
     {
-        coin.coinLevel = new string[]{ "", "k", "m", "b", "t" };
-        coin.levelCnt = 0;
-        coin.coinContain = new float[] { 100f, 0f, 0f, 0f, 0f };
         GameScenes.globalCoinManager = this;
         UpdateCoin(0);
-        Debug.Log($"");
     }
 
     public string FormatCoin(int levelCnt)

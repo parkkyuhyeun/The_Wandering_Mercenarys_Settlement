@@ -77,9 +77,6 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
         {
             foreach (RaycastResult result in results)
             {
-
-                Debug.Log($"Raycast hit: {result.gameObject.name}, this GameObject: {gameObject.name}");
-
                 if (result.gameObject.CompareTag("ItemEquip") || result.gameObject.CompareTag("AnotherItem"))
                 {
                     setPos = result.gameObject.transform.position;
@@ -88,17 +85,20 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
                         if (gameObject.GetComponent<SpriteRenderer>().sprite.name == item.weaponPrefab.GetComponent<SpriteRenderer>().sprite.name)
                         {
 
-                            if (result.gameObject.name[5] == 7)
+                            if (result.gameObject.name[5] == '7')
                             {
                                 _quickSlot[0].ItemOnQuickslot(item.weaponType);
+                                Debug.Log($"{_quickSlot[0].name}¿¡ {item.weaponType.ToString()} ÀåÂø");
                             }
-                            else if(result.gameObject.name[5] == 8)
+                            else if(result.gameObject.name[5] == '8')
                             {
                                 _quickSlot[1].ItemOnQuickslot(item.weaponType);
+                                Debug.Log($"{_quickSlot[1].name}¿¡ {item.weaponType.ToString()} ÀåÂø");
                             }
-                            else
+                            else if (result.gameObject.name[5] == '9')
                             {
                                 _quickSlot[2].ItemOnQuickslot(item.weaponType);
+                                Debug.Log($"{_quickSlot[2].name}¿¡ {item.weaponType.ToString()} ÀåÂø");
                             }
 
 
@@ -116,8 +116,8 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
                 if (result.gameObject.CompareTag("PotionEquip") || result.gameObject.CompareTag("AnotherPotion"))
                 {
                     setPos = result.gameObject.transform.position;
-                    ObjectType.PotionType curType = gameObject.name[6] == '6' ? ObjectType.PotionType.heal : ObjectType.PotionType.damageBoost;
-                    gameObject.GetComponentInParent<Transform>().GetComponent<QuickSlotUI>().ItemOnQuickslot(curType);
+                    ObjectType.PotionType curType = gameObject.name[5] == '6' ? ObjectType.PotionType.heal : ObjectType.PotionType.damageBoost;
+                    _quickSlot[3].ItemOnQuickslot(curType);
                     return true;
                 }
             }

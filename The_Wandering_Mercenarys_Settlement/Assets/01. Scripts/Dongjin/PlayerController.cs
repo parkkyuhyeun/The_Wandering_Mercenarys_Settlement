@@ -93,6 +93,9 @@ public class PlayerController : MonoBehaviour
             playerSO.curEXP = playerSO.curEXP - playerSO.nextEXP;
             GameScenes.globalLevelManager.LevelUp(ref playerSO);
             PlayerStatSetting();
+            GameScenes.globalUIManager.UpdateExp();
+            GameScenes.globalUIManager.UpdateHP();
+            GameScenes.globalUIManager.UpdateLevel();
         }
     }
 

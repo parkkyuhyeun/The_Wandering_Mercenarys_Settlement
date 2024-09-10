@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
     {
         maxHP = _playerCon.playerSO.MaxHP;
         maxEXP = _playerCon.playerSO.nextEXP;
-        hpSlider.maxValue = maxHP;
+        UpdateExp();
     }
 
     private void Update()
@@ -66,8 +66,8 @@ public class UIManager : MonoBehaviour
     public void UpdateHP()
     {
         maxEXP = _playerCon.playerSO.nextEXP;
-        currentHPTxt.text = $"{_playerCon.curHP}/{maxHP}";
         hpSlider.value = _playerCon.curHP / maxHP;
+        currentHPTxt.text = $"{_playerCon.curHP}/{maxHP}";
     }
 
     public void UpdateExp()
