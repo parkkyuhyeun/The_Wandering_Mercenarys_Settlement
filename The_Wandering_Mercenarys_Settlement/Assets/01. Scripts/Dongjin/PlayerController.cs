@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
     [Header("Ω∫≈»")]
     [SerializeField] public PlayerSO playerSO;
 
+    [Header("UI")]
+    [SerializeField] public GameObject overPanel;
+
     private Rigidbody2D rigid;
     public Collider2D playerCollider;
     private bool isFinishCoolDown = true;
@@ -41,6 +44,8 @@ public class PlayerController : MonoBehaviour
     public float curHP;
     private QuickSlotUI quickSlotUI;
     private List<QuickSlotUI> quickSlotUIs = new List<QuickSlotUI>();
+
+    SavePInf saveData = new SavePInf();
 
     private void Awake()
     {
@@ -172,6 +177,9 @@ public class PlayerController : MonoBehaviour
         if(curHP < 0)
         {
             Debug.Log("«√∑π¿ÃæÓ ªÁ∏¡");
+            overPanel.SetActive(true);
+            saveData.R_Point += (playerSO.Level / 5) * 2;
+            JsonManager<SavePInf>.SaveJson(saveData, "PlayerInformation");
             //ªÁ∏¡ √≥∏Æ
         }
     }
