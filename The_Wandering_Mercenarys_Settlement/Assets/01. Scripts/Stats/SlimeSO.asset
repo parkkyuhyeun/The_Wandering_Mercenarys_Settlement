@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: SlimeSO
   m_EditorClassIdentifier: 
   monsterType: 0
-  MaxHP: 0
-  Damage: 0
-  AttackCooldown: 0
-  AttackDistance: 0
-  GiveExp: 0
+  MaxHP: 150
+  Damage: 30
+  AttackCooldown: 1.5
+  AttackDistance: 1
+  GiveExp: 8
   GiveCoin: 8
   CoinLevel: 0
   Series: 0
