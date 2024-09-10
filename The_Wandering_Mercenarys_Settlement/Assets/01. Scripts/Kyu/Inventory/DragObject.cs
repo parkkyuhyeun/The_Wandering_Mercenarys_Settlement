@@ -87,8 +87,8 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
 
                             if (result.gameObject.name[5] == '7')
                             {
-                                _quickSlot[0].ItemOnQuickslot(item.weaponType);
-                                Debug.Log($"{_quickSlot[0].name}¿¡ {item.weaponType.ToString()} ÀåÂø");
+                                _quickSlot[2].ItemOnQuickslot(item.weaponType);
+                                Debug.Log($"{_quickSlot[2].name}¿¡ {item.weaponType.ToString()} ÀåÂø");
                             }
                             else if(result.gameObject.name[5] == '8')
                             {
@@ -97,8 +97,8 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
                             }
                             else if (result.gameObject.name[5] == '9')
                             {
-                                _quickSlot[2].ItemOnQuickslot(item.weaponType);
-                                Debug.Log($"{_quickSlot[2].name}¿¡ {item.weaponType.ToString()} ÀåÂø");
+                                _quickSlot[0].ItemOnQuickslot(item.weaponType);
+                                Debug.Log($"{_quickSlot[0].name}¿¡ {item.weaponType.ToString()} ÀåÂø");
                             }
 
 

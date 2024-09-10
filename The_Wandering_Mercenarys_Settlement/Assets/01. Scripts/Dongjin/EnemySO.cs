@@ -50,7 +50,7 @@ public class EnemySO : ScriptableObject
         bulletSpeed = _bulletSpeed;
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         _maxHP = MaxHP;
         _damage = Damage;

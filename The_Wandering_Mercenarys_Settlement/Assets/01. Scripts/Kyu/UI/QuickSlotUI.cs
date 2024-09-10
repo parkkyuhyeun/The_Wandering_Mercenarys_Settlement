@@ -33,6 +33,10 @@ public class QuickSlotUI : MonoBehaviour
 
     public void ItemOnQuickslot(ObjectType.WeaponType type)
     {
+        foreach(var showItem in showItemList)
+        {
+            showItem.prefab.SetActive(false);
+        }
         foreach (var showItem in showItemList)
         {
             if(showItem.weaponType == type)
@@ -47,6 +51,10 @@ public class QuickSlotUI : MonoBehaviour
 
     public void ItemOnQuickslot(ObjectType.PotionType type)
     {
+        foreach(var showItem in showItemList)
+        {
+            showItem.prefab.SetActive(false);
+        }
         foreach(var showItem in showItemList)
         {
             if(showItem.potionType == type)

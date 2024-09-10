@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,6 +37,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] public GameObject overPanel;
+
+    [Header("적 이펙트 타이머")]
+    [SerializeField] private float enemyEffectTimer;
 
     private Rigidbody2D rigid;
     public Collider2D playerCollider;
@@ -162,15 +166,22 @@ public class PlayerController : MonoBehaviour
 
     private void AttackStart()
     {
-        //애니메이션
-        
         //닿았으면 데미지 주기
         if (GameScenes.globalWeapon != null && GameScenes.globalWeapon.isContact)
         {
             Debug.Log("데미지 빵야");
             GameScenes.globalWeapon.EnemyObj.GetComponent<EnemyController>().TakeDamage(playerSO.Damage);
+            //이펙트
+            StartCoroutine(EnemyMatEffect());
         }
-        
+
+    }
+
+    private IEnumerator EnemyMatEffect()
+    {
+        GameScenes.globalWeapon.EnemyObj.GetComponent<SpriteRenderer>().material.color = Color.red;
+        yield return new WaitForSeconds(enemyEffectTimer);
+        GameScenes.globalWeapon.EnemyObj.GetComponent<SpriteRenderer>().material.color = Color.white;
     }
 
     public void TakeDamage(float Damage)
@@ -200,6 +211,10 @@ public class PlayerController : MonoBehaviour
 
     public void ShowWeapon(ObjectType.WeaponType type)
     {
+        foreach(var wepon in weapons)
+        {
+            wepon.weaponPrefab.SetActive(false);
+        }
         foreach(var weapon in weapons)
         {
             if(weapon.weaponType == type) weapon.weaponPrefab.SetActive(true);

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GoblinKingSO
   m_EditorClassIdentifier: 
   monsterType: 0
-  MaxHP: 0
-  Damage: 0
+  MaxHP: 100
+  Damage: 10
   AttackCooldown: 0
   AttackDistance: 0
   GiveExp: 0

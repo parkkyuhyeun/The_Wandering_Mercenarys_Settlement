@@ -88,7 +88,7 @@ public class PoolManager : MonoBehaviour
             monsterToSpawn[i] = poolDictionary[type].Count > 0 ? poolDictionary[type].Dequeue() : Instantiate(GetPrefabByType(type));
             monsterToSpawn[i].SetActive(true);
 
-            Vector3 spawnPosition = RandomPosition(playerPosition, distance);
+            Vector3 spawnPosition = RandomPosition(playerPosition, distance, i);
             monsterToSpawn[i].transform.position = spawnPosition;
         }
 
@@ -147,8 +147,9 @@ public class PoolManager : MonoBehaviour
         return null;
     }
 
-    private Vector3 RandomPosition(Vector3 playerPosition, float distance)
+    private Vector3 RandomPosition(Vector3 playerPosition, float distance, int i)
     {
+        Random.InitState(i);
         var rCircleX = Random.insideUnitCircle.x * distance;
         var rCircleY = Random.insideUnitCircle.y * distance;
    
