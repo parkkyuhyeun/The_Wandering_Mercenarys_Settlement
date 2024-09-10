@@ -18,14 +18,14 @@ MonoBehaviour:
   AttackCooldown: 0
   AttackDistance: 0
   GiveExp: 0
-  GiveCoin: 0
+  GiveCoin: 8
   CoinLevel: 0
   Series: 0
   bulletLifeTime: 0
   bulletSpeed: 0
   weaponType: 0
-  hpIncreaseRate: 0
-  damageIncreaseRate: 0
+  hpIncreaseRate: 30
+  damageIncreaseRate: 2
   cooldownDecreaseRate: 0
   rangeIncreaseRate: 0
   bulletLifeIncreaseRate: 0

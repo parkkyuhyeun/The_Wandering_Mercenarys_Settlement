@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648e8e81fdff69544a20cfc68a1ae1e6, type: 3}
   m_Name: PlayerStatsSO
   m_EditorClassIdentifier: 
-  MaxHP: 999
+  MaxHP: 200
   Damage: 20
   Level: 0
   curEXP: 0
   nextEXP: 10
   AttackCooldown: 0
-  damageIncreaseRate: 10
-  hpIncreaseRate: 10
+  damageIncreaseRate: 2
+  hpIncreaseRate: 15
   cooldownDecreaseRate: 1
