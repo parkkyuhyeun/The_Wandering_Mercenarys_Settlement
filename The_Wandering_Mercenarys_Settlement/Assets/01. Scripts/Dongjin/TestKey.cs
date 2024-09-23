@@ -13,5 +13,11 @@ public class TestKey : MonoBehaviour
 
             Debug.Log("강제 레벨업");
         }
+
+        if(Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.N))
+        {
+            GameScenes.globalWaveManager.MonstersInWaves(GameScenes.globalWaveManager.GetCurWave() + 1);
+            Debug.Log("다음 웨이브 강제 시작");
+        }
     }
 }

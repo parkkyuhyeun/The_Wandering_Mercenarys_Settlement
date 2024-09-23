@@ -69,6 +69,8 @@ public class PlayerController : MonoBehaviour
         {
             quickSlotUIs.Add(q);
         }
+        SpawnWeapon(ObjectType.WeaponType.none);
+        ShowWeapon(ObjectType.WeaponType.none);
     }
 
     private void Update()
@@ -215,7 +217,7 @@ public class PlayerController : MonoBehaviour
     {
         GameObject weaponObj = GameScenes.globalPoolManager.SpawnWeapon(type, gameObject);
         weapons.Add(new PlayerWeapon(type, weaponObj));
-        GetCurWeapon().SetType(type);
+        StartCoroutine(CallGetCurWeaponNextFrame(type));
     }
 
     public void ShowWeapon(ObjectType.WeaponType type)
@@ -262,12 +264,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private IEnumerator CallGetCurWeaponNextFrame(ObjectType.WeaponType type)
+    {
+        // 한 프레임 대기
+        yield return null;
+
+        // 다음 프레임에 무기 타입 설정
+        GetCurWeapon().SetType(type);
+    }
+
     private Weapon GetCurWeapon()
     {
-        if(weapons == null)
-        {
-            return new Weapon(ObjectType.WeaponType.none);
-        }
         return weapons.FirstOrDefault(e => e.weaponPrefab.activeSelf).weaponPrefab.GetComponent<Weapon>();
     }
 }
