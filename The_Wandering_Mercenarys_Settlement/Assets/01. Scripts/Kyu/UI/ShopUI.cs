@@ -83,6 +83,14 @@ public class ShopUI : MonoBehaviour
 
     public void Buy(int cost,int costLevel, ObjectType.WeaponType type)
     {
+        CoinManager.CoinWithLevel newCoin = new CoinManager.CoinWithLevel();
+        newCoin.levelCnt = costLevel;
+        newCoin.coinContain[costLevel] = cost;
+        if(GameScenes.globalCoinManager.coin < newCoin)
+        {
+            Debug.Log("코인 부족");
+            return;
+        }
         if (GameScenes.globalCoinManager.coin.coinContain[GameScenes.globalCoinManager.coin.levelCnt] >= cost && isSoldOuts[currentItemNum] != 1)
         {
             Debug.Log($"{type.ToString()} 구매");
