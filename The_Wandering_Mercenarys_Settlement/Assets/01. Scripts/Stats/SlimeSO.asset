@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8159995574cf2ae429d35245bdfa234d, type: 3}
   m_Name: SlimeSO
   m_EditorClassIdentifier: 
-  monsterType: 0
+  monsterType: 3
   MaxHP: 150
   Damage: 30
   AttackCooldown: 1.5
