@@ -4489,6 +4489,7 @@ MonoBehaviour:
   weapons: []
   playerSO: {fileID: 11400000, guid: 5cfb29e4cd150b845b1a50e11ef49f17, type: 2}
   overPanel: {fileID: 666107147}
+  enemyEffectTimer: 0
   playerCollider: {fileID: 0}
   curHP: 0
 --- !u!212 &358784253
@@ -4769,7 +4770,7 @@ MonoBehaviour:
   player: {fileID: 358784248}
   hpSlider: {fileID: 1054118772}
   expSlider: {fileID: 1799246888}
-  overUI: {fileID: 0}
+  overUI: {fileID: 666107147}
   cc: 0
   dc: 0
   maxEXP: 0
@@ -39151,6 +39152,9 @@ MonoBehaviour:
     initialSize: 0
   - weaponType: 6
     prefab: {fileID: 2752959901795840478, guid: d587190d57946504492f0de1b7c91dd5, type: 3}
+    initialSize: 0
+  - weaponType: 0
+    prefab: {fileID: 6754158673362663143, guid: c062744934f61f649a9e9870ed4ce209, type: 3}
     initialSize: 0
   monsterParentTransform: {fileID: 1108529339}
   weaponParentTransform: {fileID: 1239616639}
