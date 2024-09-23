@@ -5268,6 +5268,9 @@ MonoBehaviour:
   - weaponType: 6
     prefab: {fileID: 2752959901795840478, guid: d587190d57946504492f0de1b7c91dd5, type: 3}
     initialSize: 0
+  - weaponType: 0
+    prefab: {fileID: 2752959901795840478, guid: d587190d57946504492f0de1b7c91dd5, type: 3}
+    initialSize: 0
   monsterParentTransform: {fileID: 524197139}
   weaponParentTransform: {fileID: 1800477238}
 --- !u!1 &504320861

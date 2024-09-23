@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3904836ceae81624dbfe6bfe5d43f445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSO: {fileID: 11400000, guid: 61d0f856333971044a8cab9c82666a86, type: 2}
+  Type: 0
   isContact: 0
   EnemyObj: {fileID: 0}
 --- !u!58 &7742236272678031013

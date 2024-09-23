@@ -22,8 +22,7 @@ public class EnemyController : MonoBehaviour
 
 
     private void Awake()
-    {
-        GameScenes.globalEnemyController = this;  
+    {  
         enemyCollider = GetComponent<Collider2D>();
         hand = GetComponentInChildren<Transform>().gameObject;
 
@@ -136,8 +135,8 @@ public class EnemyController : MonoBehaviour
             if (enemyCollider.Distance(GameScenes.globalPlayerController.playerCollider).distance < enemySO.AttackDistance && isPossibleAttack)
             {
                 //공격 애니메이션
-                
-                StartCoroutine(GameScenes.globalBullet.ShootAttack(enemySO, hand, player));
+                var bullet = GameScenes.globalPoolManager.SpawnWeapon(ObjectType.WeaponType.enemyBullet);
+                StartCoroutine(bullet.GetComponent<Bullet>().ShootAttack(enemySO, hand, player));
                 isPossibleAttack = false;
                 StartCoroutine(AttackReload());
             }

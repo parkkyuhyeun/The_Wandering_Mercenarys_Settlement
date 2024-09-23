@@ -133,3 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba5626677a8e3bb48996d791bc63c03f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isContact: 0
+  EnemyObj: {fileID: 0}

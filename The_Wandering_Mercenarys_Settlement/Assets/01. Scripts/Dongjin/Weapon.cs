@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] public WeaponSO weaponSO;
     public ObjectType.WeaponType Type;
     public bool isContact = false;
     public GameObject EnemyObj;
 
-    private void Awake()
+    public Weapon(ObjectType.WeaponType type)
     {
-        GameScenes.globalWeapon = this;
+        this.Type = type;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

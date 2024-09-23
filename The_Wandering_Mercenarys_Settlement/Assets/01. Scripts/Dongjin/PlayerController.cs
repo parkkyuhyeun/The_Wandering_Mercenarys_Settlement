@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -166,22 +167,29 @@ public class PlayerController : MonoBehaviour
 
     private void AttackStart()
     {
-        //닿았으면 데미지 주기
-        if (GameScenes.globalWeapon != null && GameScenes.globalWeapon.isContact)
+        if(GetCurWeapon().weaponSO.WeaponType == 0)
         {
-            Debug.Log("데미지 빵야");
-            GameScenes.globalWeapon.EnemyObj.GetComponent<EnemyController>().TakeDamage(playerSO.Damage);
-            //이펙트
-            StartCoroutine(EnemyMatEffect());
+            //닿았으면 데미지 주기
+            if (GetCurWeapon() != null && GetCurWeapon().isContact)
+            {
+                Debug.Log("데미지 빵야");
+                GetCurWeapon().EnemyObj.GetComponent<EnemyController>().TakeDamage(playerSO.Damage);
+                //이펙트
+                StartCoroutine(EnemyMatEffect());
+            }
         }
-
+        else if(GetCurWeapon().weaponSO.WeaponType == 1)
+        {
+            var bullet = GameScenes.globalPoolManager.SpawnWeapon(ObjectType.WeaponType.enemyBullet);
+            bullet.GetComponent<Bullet>().ShootAttack(GetCurWeapon().weaponSO, GetCurWeapon().gameObject, Input.mousePosition);
+        }
     }
 
     private IEnumerator EnemyMatEffect()
     {
-        GameScenes.globalWeapon.EnemyObj.GetComponent<SpriteRenderer>().material.color = Color.red;
+        GetCurWeapon().EnemyObj.GetComponent<SpriteRenderer>().material.color = Color.red;
         yield return new WaitForSeconds(enemyEffectTimer);
-        GameScenes.globalWeapon.EnemyObj.GetComponent<SpriteRenderer>().material.color = Color.white;
+        GetCurWeapon().EnemyObj.GetComponent<SpriteRenderer>().material.color = Color.white;
     }
 
     public void TakeDamage(float Damage)
@@ -207,7 +215,7 @@ public class PlayerController : MonoBehaviour
     {
         GameObject weaponObj = GameScenes.globalPoolManager.SpawnWeapon(type, gameObject);
         weapons.Add(new PlayerWeapon(type, weaponObj));
-        GameScenes.globalWeapon.SetType(type);
+        GetCurWeapon().SetType(type);
     }
 
     public void ShowWeapon(ObjectType.WeaponType type)
@@ -252,5 +260,14 @@ public class PlayerController : MonoBehaviour
                 weapon.weaponPrefab.SetActive(false);
             }
         }
+    }
+
+    private Weapon GetCurWeapon()
+    {
+        if(weapons == null)
+        {
+            return new Weapon(ObjectType.WeaponType.none);
+        }
+        return weapons.FirstOrDefault(e => e.weaponPrefab.activeSelf).weaponPrefab.GetComponent<Weapon>();
     }
 }
